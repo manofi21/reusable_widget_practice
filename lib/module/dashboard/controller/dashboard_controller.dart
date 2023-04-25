@@ -6,6 +6,15 @@ class DashboardController extends State<DashboardView> implements MvcController 
   static late DashboardController instance;
   late DashboardView view;
 
+  final formKey = GlobalKey<FormState>();
+
+  final fistNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+
+  final phoneNumberController = TextEditingController();
+
+  final passwordController = TextEditingController();
+
   @override
   void initState() {
     instance = this;
