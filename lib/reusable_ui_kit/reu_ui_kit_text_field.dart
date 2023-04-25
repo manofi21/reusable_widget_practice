@@ -1,35 +1,120 @@
 import 'package:flutter/material.dart';
 
 class ReuUiKitTextField extends StatefulWidget {
-  const ReuUiKitTextField({super.key});
+  final String? id;
+  final String labelText;
+  final String? value;
+  final String? hint;
+  final String? Function(String?)? validator;
+  final bool obscure;
+  final bool enabled;
+  final int? maxLength;
+  final Widget? prefixWidget;
+  final IconData? prefixIcon;
+  final bool usePrefix;
+  final Widget? suffixWidget;
+  final IconData? suffixIcon;
+  final bool useSuffix;
+  final TextEditingController controller;
+  final void Function(String)? onChanged;
+  final void Function(String)? onSubmitted;
+  final Widget? counter;
+  final bool defaultCounter;
+
+  const ReuUiKitTextField({
+    Key? key,
+    required this.labelText,
+    this.id,
+    this.value,
+    this.validator,
+    this.hint,
+    this.maxLength,
+    this.onChanged,
+    this.onSubmitted,
+    this.obscure = false,
+    this.enabled = true,
+    this.prefixWidget,
+    this.prefixIcon,
+    this.usePrefix = false,
+    this.suffixWidget,
+    this.suffixIcon,
+    this.useSuffix = false,
+    required this.controller,
+    this.defaultCounter = false,
+    this.counter,
+  }) : super(key: key);
 
   @override
   State<ReuUiKitTextField> createState() => _ReuUiKitTextFieldState();
 }
 
 class _ReuUiKitTextFieldState extends State<ReuUiKitTextField> {
+  // TextEditingController textEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    widget.controller.text = widget.value ?? "";
+    super.initState();
+  }
+
+  @override
+  String getValue() {
+    return widget.controller.text;
+  }
+
+  @override
+  setValue(value) {
+    widget.controller.text = value;
+  }
+
+  @override
+  resetValue() {
+    widget.controller.text = "";
+  }
+
+  @override
+  focus() {
+    focusNode.requestFocus();
+  }
+
+  FocusNode focusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      maxLength: 20,
-      decoration: const InputDecoration(
-        labelText: 'Name',
-        labelStyle: TextStyle(
+      enabled: widget.enabled,
+      controller: widget.controller,
+      focusNode: focusNode,
+      validator: widget.validator,
+      maxLength: widget.maxLength,
+      obscureText: widget.obscure,
+      decoration: InputDecoration(
+        labelText: widget.labelText,
+        labelStyle: const TextStyle(
           color: Colors.blueGrey,
         ),
-        enabledBorder: UnderlineInputBorder(
+        counter: widget.counter == null && !widget.defaultCounter
+            ? Container()
+            : widget.counter,
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: Colors.blueGrey,
           ),
         ),
-        helperText: "What's your name?",
+        prefixIcon: widget.usePrefix
+            ? widget.prefixWidget ??
+                Icon(widget.prefixIcon ?? Icons.text_format)
+            : null,
+        suffixIcon: widget.useSuffix
+            ? widget.suffixWidget ??
+                Icon(widget.suffixIcon ?? Icons.text_format)
+            : null,
+        helperText: widget.hint,
       ),
-      validator: (value) {
-        if (value?.isEmpty ?? true) {
-          return 'First Name tidak boleh kosong';
-        }
+      onChanged: widget.onChanged,
+      onFieldSubmitted: (value) {
+        if (widget.onSubmitted != null) widget.onSubmitted!(value);
       },
-      // onChanged: (value) {},
     );
   }
 }
