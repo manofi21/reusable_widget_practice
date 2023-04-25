@@ -20,6 +20,8 @@ class ReuUiKitTextField extends StatefulWidget {
   final void Function(String)? onSubmitted;
   final Widget? counter;
   final bool defaultCounter;
+  final InputBorder? border;
+  final int maxLines;
 
   const ReuUiKitTextField({
     Key? key,
@@ -41,7 +43,9 @@ class ReuUiKitTextField extends StatefulWidget {
     this.useSuffix = false,
     required this.controller,
     this.defaultCounter = false,
+    this.border,
     this.counter,
+    this.maxLines = 1,
   }) : super(key: key);
 
   @override
@@ -88,19 +92,24 @@ class _ReuUiKitTextFieldState extends State<ReuUiKitTextField> {
       validator: widget.validator,
       maxLength: widget.maxLength,
       obscureText: widget.obscure,
+      maxLines: widget.maxLines,
       decoration: InputDecoration(
+        alignLabelWithHint: true,
         labelText: widget.labelText,
         labelStyle: const TextStyle(
           color: Colors.blueGrey,
         ),
+        border: widget.border,
+        focusedBorder: widget.border,
         counter: widget.counter == null && !widget.defaultCounter
             ? Container()
             : widget.counter,
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.blueGrey,
-          ),
-        ),
+        enabledBorder: widget.border ??
+            const UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.blueGrey,
+              ),
+            ),
         prefixIcon: widget.usePrefix
             ? widget.prefixWidget ??
                 Icon(widget.prefixIcon ?? Icons.text_format)
