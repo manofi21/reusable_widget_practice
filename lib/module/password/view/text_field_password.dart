@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/core.dart';
-import 'package:form_tutorial/reusable_ui_kit/reu_ui_kit_text_field.dart';
-import '../controller/password_controller.dart';
+import 'package:form_tutorial/reusable_ui_kit/base_reusable_ui_kit/reu_ui_kit_text_field.dart';
+import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_password.dart';
 
 class ReuUiKitTextFieldPassword extends StatefulWidget {
   final TextEditingController controller;
@@ -13,10 +13,11 @@ class ReuUiKitTextFieldPassword extends StatefulWidget {
   Widget build(context, ReuUiKitTextFieldPasswordController stateController) {
     stateController.view = this;
 
-    return ReuUiKitTextField(
-      labelText: "Password",
+    return ReuUiKitFieldPassword(
+      labelPasswordField: "Password",
       controller: controller,
-      obscure: true,
+      showPassword: stateController.onShowPassword,
+      defaultOnChange: stateController.onChangeShowPassword,
       counter: RichText(
         text: TextSpan(
           text: !stateController.statusPassword.isInit ? "STATUS : " : "",

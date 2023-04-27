@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form_tutorial/reusable_ui_kit/reu_ui_kit_text_field.dart';
+
+import 'reu_ui_kit_text_field.dart';
 
 class ReuUiKitTextRoundedField extends StatefulWidget {
   final String labelText;
