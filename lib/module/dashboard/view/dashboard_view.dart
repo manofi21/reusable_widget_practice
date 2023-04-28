@@ -3,6 +3,7 @@ import 'package:form_tutorial/core.dart';
 import 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_address.dart';
 import 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_phone_number.dart';
 import 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_username.dart';
+import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_checkbox.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_dropdown.dart';
 import '../controller/dashboard_controller.dart';
 
@@ -67,6 +68,15 @@ class DashboardView extends StatefulWidget {
                     debugPrint(value.value);
                   },
                   indexOfInitialValue: 0,
+                ),
+                ReuUiKitFieldCheckbox<String>(
+                  label: "Choose Prefereance",
+                  items: [
+                    // ReuChecboxModel<String>(value: 'Long Hair'),
+                    // ReuChecboxModel<String>(value: 'Short Hair'),
+                    // ReuChecboxModel<String>(value: 'Twin-tail Hair'),
+                  ],
+                  onChanged: (onListChange) {},
                 )
               ],
             ),
