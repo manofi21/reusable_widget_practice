@@ -22,7 +22,7 @@ class ReuChecboxModel<T> {
   ReuChecboxModel<T> onChangeIsBoxChecked(bool isBoxChanged) {
     return ReuChecboxModel<T>(
       value: value,
-      isBoxChecked: isBoxChecked,
+      isBoxChecked: isBoxChanged,
       label: label,
     );
   }
