@@ -1,78 +1,88 @@
 import 'package:flutter/material.dart';
 
-class ReuUiKitDropdown extends StatefulWidget {
+class ReuDropdownModel<T> {
+  /// If label is empty, the the value gonna be label itself
+  final String? label;
+  final T value;
+
+  ReuDropdownModel({this.label, required this.value});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'label': label ?? value,
+      'value': value,
+    };
+  }
+
+  String get labelValue => label ?? value.toString();
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ReuDropdownModel<T> &&
+          runtimeType == other.runtimeType &&
+          label == other.label &&
+          value == other.value;
+
+  @override
+  int get hashCode => label.hashCode ^ value.hashCode;
+}
+
+class ReuUiKitFieldDropdown<T> extends StatefulWidget {
   final String label;
   final String? hint;
-  final List<Map<String, dynamic>> items;
-  final String? Function(Map<String, dynamic>? value)? validator;
-  final dynamic value;
-  final bool emptyMode;
-  final Function(dynamic value, String? label) onChanged;
+  final List<ReuDropdownModel<T>> items;
+  final ReuDropdownModel<T>? emptyValue;
+  final String? Function(ReuDropdownModel<T>? value)? validator;
 
-  const ReuUiKitDropdown({
+  /// Prefer use index for inital value for get value in list [items]
+  final int indexOfInitialValue;
+  final Function(ReuDropdownModel<T>) onChanged;
+
+  const ReuUiKitFieldDropdown({
     Key? key,
     required this.label,
     required this.items,
+    this.emptyValue,
     required this.onChanged,
-    this.value,
+    this.indexOfInitialValue = 0,
     this.validator,
-    this.emptyMode = true,
     this.hint,
   }) : super(key: key);
 
   @override
-  State<ReuUiKitDropdown> createState() => _ReuUiKitDropdownState();
+  State<ReuUiKitFieldDropdown<T>> createState() =>
+      _ReuUiKitFieldDropdownState<T>();
 }
 
-class _ReuUiKitDropdownState extends State<ReuUiKitDropdown> {
-  List<Map<String, dynamic>> items = [];
-  Map<String, dynamic>? selectedValue;
+class _ReuUiKitFieldDropdownState<T> extends State<ReuUiKitFieldDropdown<T>> {
+  List<ReuDropdownModel<T>> items = [];
+  ReuDropdownModel<T>? selectedValue;
 
   @override
   void initState() {
     super.initState();
 
     items = [];
-    if (widget.emptyMode) {
-      items.add({
-        "label": "-",
-        "value": "-",
-      });
-      selectedValue = {
-        "label": "-",
-        "value": "-",
-      };
+    final getEmptyValue = widget.emptyValue;
+    if (getEmptyValue != null) {
+      items.add(getEmptyValue);
     }
 
     for (var item in widget.items) {
       items.add(item);
     }
 
-    var values = widget.items.where((i) => i["value"] == widget.value).toList();
-    if (values.isNotEmpty) {
-      selectedValue = values.first;
-    }
+    assert(items
+        .isNotEmpty); // Make sure to list in here not empty. if is, break prosses.
+    assert(widget.indexOfInitialValue <
+        widget.items.length -
+            1); // Make sure to indexOfInitialValue not greates than length of item list. if is, break prosses.
+    selectedValue = widget.items[widget.indexOfInitialValue];
   }
 
   setAllItemsToFalse() {
-    for (var item in items) {
-    }
-  }
-
-  Map<String, dynamic>? get currentValue {
-    if (widget.emptyMode) {
-      var foundItems =
-          items.where((i) => i["value"] == selectedValue?["value"]).toList();
-      if (foundItems.isNotEmpty) {
-        return foundItems.first;
-      }
-
-      return {
-        "label": "-",
-        "value": "-",
-      };
-    }
-    return items.first;
+    for (var item in items) {}
   }
 
   @override
@@ -81,7 +91,7 @@ class _ReuUiKitDropdownState extends State<ReuUiKitDropdown> {
       initialValue: false,
       validator: (value) {
         if (widget.validator != null) {
-          if (widget.emptyMode && selectedValue?["value"] == "-") {
+          if (widget.emptyValue == selectedValue) {
             return widget.validator!(null);
           }
           return widget.validator!(selectedValue);
@@ -100,9 +110,9 @@ class _ReuUiKitDropdownState extends State<ReuUiKitDropdown> {
             child: ButtonTheme(
               alignedDropdown: false,
               child: SizedBox(
-                child: DropdownButton<Map<String, dynamic>>(
+                child: DropdownButton<ReuDropdownModel<T>>(
                   isExpanded: true,
-                  value: currentValue,
+                  value: selectedValue,
                   icon: Padding(
                     padding: const EdgeInsets.only(right: 10.0),
                     child: Icon(
@@ -123,26 +133,19 @@ class _ReuUiKitDropdownState extends State<ReuUiKitDropdown> {
                     height: 0,
                     color: Colors.grey[300],
                   ),
-                  onChanged: (Map<String, dynamic>? newValue) {
-                    if (widget.emptyMode && newValue?["value"] == "-") {
-                      selectedValue = {
-                        "label": "-",
-                        "value": "-",
-                      };
-                    } else {
-                      selectedValue = newValue!;
+                  onChanged: (ReuDropdownModel<T>? newValue) {
+                    if (newValue != null) {
+                      setState(() {
+                        selectedValue = newValue;
+                        widget.onChanged(newValue);
+                      });
                     }
-                    setState(() {});
-
-                    var label = selectedValue!["label"];
-                    var value = selectedValue!["value"];
-                    widget.onChanged(value, label);
                   },
                   items: List.generate(
                     items.length,
                     (index) {
                       var item = items[index];
-                      return DropdownMenuItem<Map<String, dynamic>>(
+                      return DropdownMenuItem<ReuDropdownModel<T>>(
                         value: item,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -150,7 +153,7 @@ class _ReuUiKitDropdownState extends State<ReuUiKitDropdown> {
                             vertical: 0.0,
                           ),
                           child: Text(
-                            item["label"],
+                            item.labelValue,
                           ),
                         ),
                       );
