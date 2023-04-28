@@ -73,16 +73,11 @@ class _ReuUiKitFieldDropdownState<T> extends State<ReuUiKitFieldDropdown<T>> {
       items.add(item);
     }
 
-    assert(items
-        .isNotEmpty); // Make sure to list in here not empty. if is, break prosses.
-    assert(widget.indexOfInitialValue <
-        widget.items.length -
-            1); // Make sure to indexOfInitialValue not greates than length of item list. if is, break prosses.
+    // Make sure to list in here not empty. if is, break prosses.
+    assert(items.isNotEmpty);
+    // Make sure to indexOfInitialValue not greates than length of item list. if is, break prosses.
+    assert(widget.indexOfInitialValue < widget.items.length - 1);
     selectedValue = widget.items[widget.indexOfInitialValue];
-  }
-
-  setAllItemsToFalse() {
-    for (var item in items) {}
   }
 
   @override
