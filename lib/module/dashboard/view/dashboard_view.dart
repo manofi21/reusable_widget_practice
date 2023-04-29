@@ -5,6 +5,9 @@ import 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_phon
 import 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_username.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_checkbox.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_dropdown.dart';
+import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_image_picker.dart';
+import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_radiobutton.dart';
+import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_switch.dart';
 import '../controller/dashboard_controller.dart';
 
 class DashboardView extends StatefulWidget {
@@ -72,11 +75,26 @@ class DashboardView extends StatefulWidget {
                 ReuUiKitFieldCheckbox<String>(
                   label: "Choose Prefereance",
                   items: [
-                    // ReuChecboxModel<String>(value: 'Long Hair'),
-                    // ReuChecboxModel<String>(value: 'Short Hair'),
-                    // ReuChecboxModel<String>(value: 'Twin-tail Hair'),
+                    ReuChecboxModel<String>(value: 'Long Hair'),
+                    ReuChecboxModel<String>(value: 'Short Hair'),
+                    ReuChecboxModel<String>(value: 'Twin-tail Hair'),
                   ],
                   onChanged: (onListChange) {},
+                ),
+                ReuUiKitFieldRadiobutton<String>(
+                  label: "Choose Referance",
+                  items: [
+                    ReuRadioButtonModel<String>(value: 'Long Hair'),
+                    ReuRadioButtonModel<String>(value: 'Short Hair'),
+                    ReuRadioButtonModel<String>(value: 'Twin-tail Hair'),
+                  ],
+                  onChanged: (selectedValue) {
+                    print(selectedValue?.labelValue);
+                  },
+                ),
+                ReuUiKitFieldImagePicker(
+                  label: "Add Image",
+                  onChanged: (value) {},
                 )
               ],
             ),
