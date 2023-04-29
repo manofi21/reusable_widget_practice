@@ -111,16 +111,18 @@ class _ReuUiKitFieldRadiobuttonState<T>
                     setState(() {
                       selectedValue = val;
                       field.didChange(true);
+                      widget.onChanged(val);
                     });
-                    widget.onChanged(val);
                   }
                 },
                 onFocusChange: (val) {
                   setState(
                     () {
-                      items[index] = items[index].onChangeIsBoxChecked(
-                        val,
-                      );
+                      setState(() {
+                        items[index] = items[index].onChangeIsBoxChecked(
+                          val,
+                        );
+                      });
                       field.didChange(true);
                     },
                   );
