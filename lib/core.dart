@@ -5,8 +5,11 @@ it means you have to rename it to something more unique.
 */
 export 'package:form_tutorial/module/dashboard/controller/dashboard_controller.dart';
 export 'package:form_tutorial/module/dashboard/view/dashboard_view.dart';
+export 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_address.dart';
 export 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_phone_number.dart';
 export 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_username.dart';
+export 'package:form_tutorial/module/image_picker_field/controller/image_picker_field_controller.dart';
+export 'package:form_tutorial/module/image_picker_field/view/image_picker_field_view.dart';
 export 'package:form_tutorial/module/password_field/controller/password_controller.dart';
 export 'package:form_tutorial/module/password_field/model/password_state.dart';
 export 'package:form_tutorial/module/password_field/view/text_field_password.dart';
