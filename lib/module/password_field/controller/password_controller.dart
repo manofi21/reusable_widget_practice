@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:form_tutorial/module/password/model/password_state.dart';
+import 'package:form_tutorial/module/password_field/model/password_state.dart';
 import 'package:form_tutorial/state_util.dart';
-import '../view/reu_ui_kit_text_field_password.dart';
+import '../view/text_field_password.dart';
 
 class ReuUiKitTextFieldPasswordController
     extends State<ReuUiKitTextFieldPassword> implements MvcController {
@@ -9,6 +9,12 @@ class ReuUiKitTextFieldPasswordController
   late ReuUiKitTextFieldPassword view;
 
   StatusPassword statusPassword = StatusPassword.init;
+  bool onShowPassword = false;
+  void onChangeShowPassword() {
+    setState(() {
+      onShowPassword = !onShowPassword;
+    });
+  }
 
   @override
   void initState() {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form_tutorial/core.dart';
-import 'package:form_tutorial/reusable_ui_kit/base_reusable_ui_kit/reu_ui_kit_text_field.dart';
+import 'package:form_tutorial/module/password_field/controller/password_controller.dart';
+import 'package:form_tutorial/module/password_field/model/password_state.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_password.dart';
 
 class ReuUiKitTextFieldPassword extends StatefulWidget {
