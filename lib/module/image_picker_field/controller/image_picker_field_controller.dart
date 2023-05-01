@@ -44,23 +44,19 @@ class ImagePickerFieldController extends State<ImagePickerFieldView>
   Widget build(BuildContext context) => widget.build(context, this);
 }
 
-Future<ResultImagePicker> getFileMultiplePlatform() async {
-  List<XFile> listFile = await ImagePicker().pickMultiImage();
-  return ResultImagePicker(listFile);
+/// Funcion can be change/update.
+Future<List<XFile>> getFileMultiplePlatform() async {
+  return ImagePicker().pickMultiImage();
 }
 
-class ResultImagePicker {
-  final List<XFile> listNameOfXfile;
-
-  ResultImagePicker(this.listNameOfXfile);
-
+extension ListXFileExtension on List<XFile> {
   String get nameOfValue {
-    final getListName = listNameOfXfile.map((e) => '"${e.name}"').toList();
+    final getListName = map((e) => '"${e.name}"').toList();
     final valuesOfName = getListName.join(', ');
     return valuesOfName;
   }
 
   Future<List<Uint8List>> get listOfUint8ListImg async {
-    return Future.wait(listNameOfXfile.map((e) => e.readAsBytes()).toList());
+    return Future.wait(map((e) => e.readAsBytes()).toList());
   }
 }

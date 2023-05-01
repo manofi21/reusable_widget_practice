@@ -7,12 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ReuUiKitFieldImagePicker extends StatelessWidget {
-  final String label;
   final String? value;
   final String? hint;
   final String? Function(String?)? validator;
   final bool obscure;
-  final void Function(String) onChanged;
+  final void Function(String) onFieldChanged;
   final String? provider;
   final TextEditingController textController;
   final bool isLoading;
@@ -22,11 +21,10 @@ class ReuUiKitFieldImagePicker extends StatelessWidget {
 
   const ReuUiKitFieldImagePicker({
     Key? key,
-    required this.label,
     this.value,
     this.validator,
     this.hint,
-    required this.onChanged,
+    required this.onFieldChanged,
     this.obscure = false,
     this.provider = "cloudinary",
     this.isLoading = false,
@@ -55,11 +53,9 @@ class ReuUiKitFieldImagePicker extends StatelessWidget {
               image: isLoading
                   ? null
                   : DecorationImage(
-                      image: NetworkImage(
-                        imageUrl == null
-                            ? "https://i.ibb.co/S32HNjD/no-image.jpg"
-                            : imageUrl!,
-                      ),
+                      image: NetworkImage(imageUrl == null
+                          ? "https://i.ibb.co/S32HNjD/no-image.jpg"
+                          : imageUrl!),
                       fit: BoxFit.cover,
                     ),
               borderRadius: const BorderRadius.all(
@@ -105,7 +101,7 @@ class ReuUiKitFieldImagePicker extends StatelessWidget {
             child: FormField(
                 initialValue: false,
                 validator: (value) {
-                  final currValidator =  validator;
+                  final currValidator = validator;
                   if (currValidator != null) {
                     return currValidator(imageUrl);
                   }
@@ -150,9 +146,7 @@ class ReuUiKitFieldImagePicker extends StatelessWidget {
                       helperText: hint,
                       errorText: field.errorText,
                     ),
-                    onChanged: (value) {
-                      onChanged(value);
-                    },
+                    onChanged: onFieldChanged,
                   );
                 }),
           ),
