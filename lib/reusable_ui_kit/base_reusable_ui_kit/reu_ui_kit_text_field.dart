@@ -22,6 +22,7 @@ class ReuUiKitTextField extends StatefulWidget {
   final bool defaultCounter;
   final InputBorder? border;
   final int maxLines;
+  final TextInputType textInputType;
 
   const ReuUiKitTextField({
     Key? key,
@@ -46,6 +47,7 @@ class ReuUiKitTextField extends StatefulWidget {
     this.border,
     this.counter,
     this.maxLines = 1,
+    this.textInputType = TextInputType.number,
   }) : super(key: key);
 
   @override
@@ -93,6 +95,7 @@ class _ReuUiKitTextFieldState extends State<ReuUiKitTextField> {
       maxLength: widget.maxLength,
       obscureText: widget.obscure,
       maxLines: widget.maxLines,
+      keyboardType: widget.textInputType,
       decoration: InputDecoration(
         alignLabelWithHint: true,
         labelText: widget.labelText,
