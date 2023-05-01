@@ -47,7 +47,7 @@ class ReuUiKitTextField extends StatefulWidget {
     this.border,
     this.counter,
     this.maxLines = 1,
-    this.textInputType = TextInputType.number,
+    this.textInputType = TextInputType.text,
   }) : super(key: key);
 
   @override
@@ -55,32 +55,10 @@ class ReuUiKitTextField extends StatefulWidget {
 }
 
 class _ReuUiKitTextFieldState extends State<ReuUiKitTextField> {
-  // TextEditingController textEditingController = TextEditingController();
-
   @override
   void initState() {
     widget.controller.text = widget.value ?? "";
     super.initState();
-  }
-
-  @override
-  String getValue() {
-    return widget.controller.text;
-  }
-
-  @override
-  setValue(value) {
-    widget.controller.text = value;
-  }
-
-  @override
-  resetValue() {
-    widget.controller.text = "";
-  }
-
-  @override
-  focus() {
-    focusNode.requestFocus();
   }
 
   FocusNode focusNode = FocusNode();
