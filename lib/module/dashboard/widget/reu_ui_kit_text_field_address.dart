@@ -8,10 +8,14 @@ class ReuUiKitTextFieldAddress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ReuUiKitTextRoundedField(
+      // isOutsideField: false,
       labelText: "Address",
       controller: controller,
       maxLines: 3,
-      border: InputBorder.none,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide.none,
+      ),
     );
   }
 }
