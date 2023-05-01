@@ -1,26 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/core.dart';
+import 'package:form_tutorial/module/image_picker_field/widget/stagged_grid_view_widget.dart';
+import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_image_picker.dart';
 import '../controller/image_picker_field_controller.dart';
 
 class ImagePickerFieldView extends StatefulWidget {
-  const ImagePickerFieldView({Key? key}) : super(key: key);
+  final String? Function(String?)? validator;
+  final void Function(String) onChanged;
+  final String labelText;
+  const ImagePickerFieldView(
+      {Key? key, this.validator, required this.onChanged, this.labelText = ""})
+      : super(key: key);
 
   Widget build(context, ImagePickerFieldController controller) {
     controller.view = this;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("ImagePickerField"),
-        actions: const [],
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: const [],
-          ),
+    // return MyStaggeredGridview();
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ReuUiKitFieldImagePicker(
+          textController: controller.imagePickerTextController,
+          labelText: labelText,
+          onFieldChanged: (p0) {},
+          isLoading: controller.isLoading,
+          onPressed: () async {
+            await controller.onPressedImagePicker();
+          },
         ),
-      ),
+        const SizedBox(height: 10),
+        MyStaggeredGridview(
+          listUint8List: controller.listMultipleImage,
+        )
+      ],
     );
   }
 

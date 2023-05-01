@@ -1,8 +1,13 @@
+// UI Target:
+// https://dribbble.com/shots/19909455-Members-Contact-Page
+// https://dribbble.com/shots/18147692-A-collection-of-modals-Untitled-UI
+
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/core.dart';
 import 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_address.dart';
 import 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_phone_number.dart';
 import 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_username.dart';
+import 'package:form_tutorial/module/password_field/view/text_field_password.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_checkbox.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_dropdown.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_image_picker.dart';
@@ -92,10 +97,15 @@ class DashboardView extends StatefulWidget {
                     print(selectedValue?.labelValue);
                   },
                 ),
-                ReuUiKitFieldImagePicker(
-                  label: "Add Image",
+                ImagePickerFieldView(
+                  labelText: "Add Image",
                   onChanged: (value) {},
                 )
+                // ReuUiKitFieldImagePicker(
+                //   labelText: "Add Image",
+                //   onFieldChanged: (value) {},
+                //   textController: controller.imagePickerTextController,
+                // )
               ],
             ),
           ),
