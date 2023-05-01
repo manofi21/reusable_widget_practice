@@ -96,6 +96,7 @@ class _ReuUiKitTextFieldState extends State<ReuUiKitTextField> {
       decoration: InputDecoration(
         alignLabelWithHint: true,
         labelText: widget.labelText,
+        contentPadding: EdgeInsets.zero,
         labelStyle: const TextStyle(
           color: Colors.blueGrey,
         ),

@@ -7,12 +7,14 @@ class ReuUiKitTextRoundedField extends StatefulWidget {
   final TextEditingController controller;
   final int maxLines;
   final InputBorder? border;
+  final bool isOutsideField;
   const ReuUiKitTextRoundedField({
     super.key,
     required this.labelText,
     required this.controller,
     this.maxLines = 1,
     this.border,
+    this.isOutsideField = true,
   });
 
   @override
@@ -23,15 +25,40 @@ class ReuUiKitTextRoundedField extends StatefulWidget {
 class _ReuUiKitTextRoundedFieldState extends State<ReuUiKitTextRoundedField> {
   @override
   Widget build(BuildContext context) {
+    if (widget.isOutsideField) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(widget.labelText),
+          const SizedBox(height: 10),
+          Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Colors.grey[400],
+              border: Border.all(color: Colors.black),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(6.0),
+              ),
+            ),
+            child: ReuUiKitTextField(
+              labelText: '',
+              controller: widget.controller,
+              border: widget.border,
+              maxLines: widget.maxLines,
+            ),
+          ),
+        ],
+      );
+    }
     return Container(
       padding: const EdgeInsets.all(5),
+      // constraints: const BoxConstraints.tightFor(width: 47, height: 47),
       decoration: BoxDecoration(
         color: Colors.grey[400],
         border: Border.all(color: Colors.black),
         borderRadius: const BorderRadius.all(
-          Radius.circular(
-            6.0,
-          ),
+          Radius.circular(6.0),
         ),
       ),
       child: ReuUiKitTextField(
