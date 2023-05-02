@@ -28,6 +28,7 @@ class ReuUiKitFieldPassword extends StatelessWidget {
       obscure: !showPassword,
       counter: counter,
       onChanged: onChanged,
+      useSuffix: true,
       suffixWidget: suffixWidget ??
           IconButton(
             icon: Icon(showPassword ? Icons.visibility_off : Icons.visibility),
