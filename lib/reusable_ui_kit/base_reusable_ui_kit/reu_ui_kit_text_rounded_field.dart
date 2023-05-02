@@ -35,11 +35,20 @@ class _ReuUiKitTextRoundedFieldState extends State<ReuUiKitTextRoundedField> {
           Container(
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
-              color: Colors.grey[400],
+              color: Colors.white,
               border: Border.all(color: Colors.black),
               borderRadius: const BorderRadius.all(
                 Radius.circular(6.0),
               ),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black,
+                  spreadRadius: 0.5,
+                  blurStyle: BlurStyle.solid,
+                  blurRadius: 1,
+                  offset: Offset(0, 5)
+                )
+              ]
             ),
             child: ReuUiKitTextField(
               labelText: '',
@@ -51,6 +60,7 @@ class _ReuUiKitTextRoundedFieldState extends State<ReuUiKitTextRoundedField> {
         ],
       );
     }
+    
     return Container(
       padding: const EdgeInsets.all(5),
       // constraints: const BoxConstraints.tightFor(width: 47, height: 47),
