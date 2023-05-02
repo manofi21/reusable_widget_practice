@@ -8,14 +8,16 @@ class ImagePickerFieldView extends StatefulWidget {
   final String? Function(String?)? validator;
   final void Function(String) onChanged;
   final String labelText;
-  const ImagePickerFieldView(
-      {Key? key, this.validator, required this.onChanged, this.labelText = ""})
-      : super(key: key);
+  const ImagePickerFieldView({
+    Key? key,
+    this.validator,
+    required this.onChanged,
+    this.labelText = "",
+  }) : super(key: key);
 
   Widget build(context, ImagePickerFieldController controller) {
     controller.view = this;
 
-    // return MyStaggeredGridview();
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
