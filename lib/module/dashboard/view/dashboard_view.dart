@@ -4,16 +4,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/core.dart';
-import 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_address.dart';
-import 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_phone_number.dart';
-import 'package:form_tutorial/module/dashboard/widget/reu_ui_kit_text_field_username.dart';
-import 'package:form_tutorial/module/password_field/view/text_field_password.dart';
+import 'package:form_tutorial/module/dashboard/widget/row_space_evenly_widget.dart';
+import 'package:form_tutorial/reusable_ui_kit/entities/reu_checkbox_model.dart';
+import 'package:form_tutorial/reusable_ui_kit/entities/reu_dropdown_model.dart';
+import 'package:form_tutorial/reusable_ui_kit/entities/reu_radiobutton_model.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_checkbox.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_dropdown.dart';
-import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_image_picker.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_radiobutton.dart';
-import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_switch.dart';
-import '../controller/dashboard_controller.dart';
 
 class DashboardView extends StatefulWidget {
   const DashboardView({Key? key}) : super(key: key);
@@ -35,22 +32,17 @@ class DashboardView extends StatefulWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                RowSpaceEvenlyWidget(
                   children: [
-                    Expanded(
-                      child: ReuUiKitTextFieldName(
-                        controller: controller.fistNameController,
-                        fieldNameType: FieldNameType.firstName,
-                      ),
+                    ReuUiKitTextFieldName(
+                      controller: controller.fistNameController,
+                      fieldNameType: FieldNameType.firstName,
                     ),
-                    const SizedBox(width: 10.0),
-                    Expanded(
-                      child: ReuUiKitTextFieldName(
-                        controller: controller.lastNameController,
-                        fieldNameType: FieldNameType.lastName,
-                      ),
-                    ),
+                    const SizedBox(width: 10),
+                    ReuUiKitTextFieldName(
+                      controller: controller.lastNameController,
+                      fieldNameType: FieldNameType.lastName,
+                    )
                   ],
                 ),
                 ReuUiKitTextFieldPhoneNumber(
@@ -93,19 +85,12 @@ class DashboardView extends StatefulWidget {
                     ReuRadioButtonModel<String>(value: 'Short Hair'),
                     ReuRadioButtonModel<String>(value: 'Twin-tail Hair'),
                   ],
-                  onChanged: (selectedValue) {
-                    print(selectedValue?.labelValue);
-                  },
+                  onChanged: (selectedValue) {},
                 ),
                 ImagePickerFieldView(
                   labelText: "Add Image",
                   onChanged: (value) {},
                 )
-                // ReuUiKitFieldImagePicker(
-                //   labelText: "Add Image",
-                //   onFieldChanged: (value) {},
-                //   textController: controller.imagePickerTextController,
-                // )
               ],
             ),
           ),
