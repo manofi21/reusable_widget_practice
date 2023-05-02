@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/reusable_ui_kit/base_reusable_ui_kit/reu_ui_kit_text_rounded_field.dart';
+import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_areatext.dart';
 
 class ReuUiKitTextFieldAddress extends StatelessWidget {
   final TextEditingController controller;
@@ -7,15 +8,9 @@ class ReuUiKitTextFieldAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ReuUiKitTextRoundedField(
-      // isOutsideField: false,
+    return ReuUiKitTextFieldAreaText(
       labelText: "Address",
       controller: controller,
-      maxLines: 3,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide.none,
-      ),
     );
   }
 }
