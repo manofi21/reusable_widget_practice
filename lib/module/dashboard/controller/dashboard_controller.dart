@@ -15,6 +15,8 @@ class DashboardController extends State<DashboardView> implements MvcController 
 
   final passwordController = TextEditingController();
 
+  final addressController = TextEditingController();
+
   @override
   void initState() {
     instance = this;
