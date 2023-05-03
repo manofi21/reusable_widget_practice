@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/reusable_ui_kit/entities/reu_dropdown_model.dart';
 
+import '../input_decoration_bold_shadow.dart';
+
 class ReuUiKitFieldDropdown<T> extends StatefulWidget {
   final String label;
   final String? hint;
@@ -11,6 +13,7 @@ class ReuUiKitFieldDropdown<T> extends StatefulWidget {
   /// Prefer use index for inital value for get value in list [items]
   final int indexOfInitialValue;
   final Function(ReuDropdownModel<T>) onChanged;
+  final bool useShadowBox;
 
   const ReuUiKitFieldDropdown({
     Key? key,
@@ -21,6 +24,7 @@ class ReuUiKitFieldDropdown<T> extends StatefulWidget {
     this.indexOfInitialValue = 0,
     this.validator,
     this.hint,
+    this.useShadowBox = false,
   }) : super(key: key);
 
   @override
@@ -68,69 +72,77 @@ class _ReuUiKitFieldDropdownState<T> extends State<ReuUiKitFieldDropdown<T>> {
       },
       enabled: true,
       builder: (FormFieldState<bool> field) {
+        final dropdownWidget = DropdownButtonHideUnderline(
+          child: ButtonTheme(
+            alignedDropdown: false,
+            child: SizedBox(
+              child: DropdownButton<ReuDropdownModel<T>>(
+                isExpanded: true,
+                value: selectedValue,
+                icon: Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: Icon(
+                    Icons.arrow_drop_down_outlined,
+                    size: 24.0,
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
+                  ),
+                ),
+                iconSize: 16,
+                elevation: 16,
+                style: TextStyle(
+                  fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
+                  fontFamily:
+                      Theme.of(context).textTheme.bodyMedium!.fontFamily,
+                  color: Theme.of(context).textTheme.bodyMedium!.color,
+                ),
+                underline: Container(
+                  height: 0,
+                  color: Colors.grey[300],
+                ),
+                onChanged: (ReuDropdownModel<T>? newValue) {
+                  if (newValue != null) {
+                    setState(() {
+                      selectedValue = newValue;
+                      widget.onChanged(newValue);
+                    });
+                  }
+                },
+                items: List.generate(
+                  items.length,
+                  (index) {
+                    var item = items[index];
+                    return DropdownMenuItem<ReuDropdownModel<T>>(
+                      value: item,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 0.0,
+                          vertical: 0.0,
+                        ),
+                        child: Text(
+                          item.labelValue,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
+        );
+        if (widget.useShadowBox) {
+          return InputDecorationBoldShabow(
+            labelText: widget.label,
+            child: dropdownWidget,
+          );
+        }
+
         return InputDecorator(
           decoration: InputDecoration(
             labelText: widget.label,
             errorText: field.errorText,
             helperText: widget.hint,
           ),
-          child: DropdownButtonHideUnderline(
-            child: ButtonTheme(
-              alignedDropdown: false,
-              child: SizedBox(
-                child: DropdownButton<ReuDropdownModel<T>>(
-                  isExpanded: true,
-                  value: selectedValue,
-                  icon: Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: Icon(
-                      Icons.arrow_drop_down_outlined,
-                      size: 24.0,
-                      color: Theme.of(context).textTheme.bodyLarge!.color,
-                    ),
-                  ),
-                  iconSize: 16,
-                  elevation: 16,
-                  style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
-                    fontFamily:
-                        Theme.of(context).textTheme.bodyMedium!.fontFamily,
-                    color: Theme.of(context).textTheme.bodyMedium!.color,
-                  ),
-                  underline: Container(
-                    height: 0,
-                    color: Colors.grey[300],
-                  ),
-                  onChanged: (ReuDropdownModel<T>? newValue) {
-                    if (newValue != null) {
-                      setState(() {
-                        selectedValue = newValue;
-                        widget.onChanged(newValue);
-                      });
-                    }
-                  },
-                  items: List.generate(
-                    items.length,
-                    (index) {
-                      var item = items[index];
-                      return DropdownMenuItem<ReuDropdownModel<T>>(
-                        value: item,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 0.0,
-                            vertical: 0.0,
-                          ),
-                          child: Text(
-                            item.labelValue,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ),
+          child: dropdownWidget,
         );
       },
     );

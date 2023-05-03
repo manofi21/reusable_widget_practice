@@ -37,11 +37,13 @@ class DashboardView extends StatefulWidget {
                     ReuUiKitTextFieldName(
                       controller: controller.fistNameController,
                       fieldNameType: FieldNameType.firstName,
+                      useShadowBox: true,
                     ),
                     const SizedBox(width: 10),
                     ReuUiKitTextFieldName(
                       controller: controller.lastNameController,
                       fieldNameType: FieldNameType.lastName,
+                      useShadowBox: true,
                     )
                   ],
                 ),
@@ -68,6 +70,7 @@ class DashboardView extends StatefulWidget {
                     debugPrint(value.value);
                   },
                   indexOfInitialValue: 0,
+                  useShadowBox: true,
                 ),
                 ReuUiKitFieldCheckbox<String>(
                   label: "Choose Prefereance",
