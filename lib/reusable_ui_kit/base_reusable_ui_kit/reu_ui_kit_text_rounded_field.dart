@@ -9,13 +9,15 @@ class ReuUiKitTextRoundedField extends StatefulWidget {
   final int maxLines;
   final InputBorder? border;
   final bool isOutsideField;
+  final TextInputType textInputType;
   const ReuUiKitTextRoundedField({
     super.key,
     required this.labelText,
     required this.controller,
     this.maxLines = 1,
     this.border,
-    this.isOutsideField = true,
+    this.isOutsideField = false,
+    this.textInputType = TextInputType.text,
   });
 
   @override
@@ -27,31 +29,31 @@ class _ReuUiKitTextRoundedFieldState extends State<ReuUiKitTextRoundedField> {
   @override
   Widget build(BuildContext context) {
     if (widget.isOutsideField) {
-      return InputDecorationBoldShabow(
-        labelText: widget.labelText,
+      return Container(
+        padding: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(6.0),
+          ),
+        ),
         child: ReuUiKitTextField(
-          labelText: '',
+          labelText: widget.labelText,
           controller: widget.controller,
           border: widget.border,
           maxLines: widget.maxLines,
+          textInputType: widget.textInputType,
         ),
       );
     }
-    return Container(
-      padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        color: Colors.grey[400],
-        border: Border.all(color: Colors.black),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(6.0),
-        ),
+    return ReuUiKitTextField(
+      labelText: widget.labelText,
+      controller: widget.controller,
+      border: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.black, width: 1),
       ),
-      child: ReuUiKitTextField(
-        labelText: widget.labelText,
-        controller: widget.controller,
-        border: widget.border,
-        maxLines: widget.maxLines,
-      ),
+      maxLines: widget.maxLines,
+      textInputType: widget.textInputType,
     );
   }
 }
