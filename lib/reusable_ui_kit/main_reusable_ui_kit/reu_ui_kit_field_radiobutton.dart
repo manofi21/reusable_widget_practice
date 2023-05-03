@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/reusable_ui_kit/entities/reu_radiobutton_model.dart';
 
+import '../input_decoration_bold_shadow.dart';
+
 class ReuUiKitFieldRadiobutton<T> extends StatefulWidget {
   final String label;
   final List<ReuRadioButtonModel<T>> items;
@@ -10,6 +12,7 @@ class ReuUiKitFieldRadiobutton<T> extends StatefulWidget {
   final String? Function(List<ReuRadioButtonModel<T>> item)? validator;
   final void Function(ReuRadioButtonModel<T>? values) onChanged;
   final ScrollPhysics? physics;
+  final bool useShadowBox;
 
   const ReuUiKitFieldRadiobutton({
     super.key,
@@ -19,6 +22,7 @@ class ReuUiKitFieldRadiobutton<T> extends StatefulWidget {
     required this.items,
     required this.onChanged,
     this.physics,
+    this.useShadowBox = false,
   });
 
   @override
@@ -47,48 +51,57 @@ class _ReuUiKitFieldRadiobuttonState<T>
       enabled: true,
       validator: (value) => widget.validator!(items),
       builder: (FormFieldState<bool> field) {
+        final listOfRadioButton = ListView.builder(
+          shrinkWrap: true,
+          itemCount: items.length,
+          physics: widget.physics ?? const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            var item = items[index];
+
+            return RadioListTile<ReuRadioButtonModel<T>>(
+              title: Text(item.labelValue),
+              groupValue: selectedValue,
+              selected: item.isRadioChoose,
+              value: item,
+              onChanged: (val) {
+                if (val != null) {
+                  setState(() {
+                    selectedValue = val;
+                    field.didChange(true);
+                    widget.onChanged(val);
+                  });
+                }
+              },
+              onFocusChange: (val) {
+                setState(
+                  () {
+                    setState(() {
+                      items[index] = items[index].onChangeIsBoxChecked(
+                        val,
+                      );
+                    });
+                    field.didChange(true);
+                  },
+                );
+              },
+            );
+          },
+        );
+
+        if (widget.useShadowBox) {
+          return InputDecorationBoldShabow(
+            labelText: widget.label,
+            child: listOfRadioButton,
+          );
+        }
+
         return InputDecorator(
           decoration: InputDecoration(
             labelText: widget.label,
             errorText: field.errorText,
             border: InputBorder.none,
           ),
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: items.length,
-            physics: widget.physics ?? const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              var item = items[index];
-
-              return RadioListTile<ReuRadioButtonModel<T>>(
-                title: Text(item.labelValue),
-                groupValue: selectedValue,
-                selected: item.isRadioChoose,
-                value: item,
-                onChanged: (val) {
-                  if (val != null) {
-                    setState(() {
-                      selectedValue = val;
-                      field.didChange(true);
-                      widget.onChanged(val);
-                    });
-                  }
-                },
-                onFocusChange: (val) {
-                  setState(
-                    () {
-                      setState(() {
-                        items[index] = items[index].onChangeIsBoxChecked(
-                          val,
-                        );
-                      });
-                      field.didChange(true);
-                    },
-                  );
-                },
-              );
-            },
-          ),
+          child: listOfRadioButton,
         );
       },
     );
