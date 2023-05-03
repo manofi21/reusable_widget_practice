@@ -9,6 +9,7 @@ class ReuUiKitFieldCheckbox<T> extends StatefulWidget {
   final String? Function(List<ReuChecboxModel<T>> item)? validator;
   final Future<List<ReuChecboxModel<T>>> Function()? onFuture;
   final void Function(List<ReuChecboxModel<T>> values) onChanged;
+  final ScrollPhysics? physics;
 
   const ReuUiKitFieldCheckbox({
     Key? key,
@@ -17,7 +18,7 @@ class ReuUiKitFieldCheckbox<T> extends StatefulWidget {
     this.validator,
     this.onFuture,
     this.hint,
-    required this.onChanged,
+    required this.onChanged, this.physics,
   }) : super(key: key);
 
   @override
@@ -60,6 +61,7 @@ class _ReuUiKitFieldCheckboxState<T> extends State<ReuUiKitFieldCheckbox<T>> {
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: items.length,
+            physics: widget.physics ?? const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return CheckboxListTile(
                 title: Text(items[index].labelValue),

@@ -9,6 +9,7 @@ class ReuUiKitFieldRadiobutton<T> extends StatefulWidget {
   final int? indexOfInitialValue;
   final String? Function(List<ReuRadioButtonModel<T>> item)? validator;
   final void Function(ReuRadioButtonModel<T>? values) onChanged;
+  final ScrollPhysics? physics;
 
   const ReuUiKitFieldRadiobutton({
     super.key,
@@ -17,6 +18,7 @@ class ReuUiKitFieldRadiobutton<T> extends StatefulWidget {
     required this.label,
     required this.items,
     required this.onChanged,
+    this.physics,
   });
 
   @override
@@ -54,6 +56,7 @@ class _ReuUiKitFieldRadiobuttonState<T>
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: items.length,
+            physics: widget.physics ?? const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               var item = items[index];
 
