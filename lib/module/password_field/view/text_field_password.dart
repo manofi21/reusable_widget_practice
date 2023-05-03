@@ -17,6 +17,7 @@ class ReuUiKitTextFieldPassword extends StatefulWidget {
       labelPasswordField: "Password",
       controller: controller,
       showPassword: stateController.onShowPassword,
+      useShadowBox: true,
       defaultOnChange: stateController.onChangeShowPassword,
       counter: RichText(
         text: TextSpan(

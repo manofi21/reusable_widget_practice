@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/reusable_ui_kit/base_reusable_ui_kit/reu_ui_kit_text_field.dart';
 
+import '../input_decoration_bold_shadow.dart';
+
 class ReuUiKitFieldPassword extends StatelessWidget {
   final TextEditingController controller;
   final void Function(String)? onChanged;
@@ -9,6 +11,7 @@ class ReuUiKitFieldPassword extends StatelessWidget {
   final String labelPasswordField;
   final Widget? suffixWidget;
   final void Function()? defaultOnChange;
+  final bool useShadowBox;
   const ReuUiKitFieldPassword({
     super.key,
     required this.controller,
@@ -18,20 +21,48 @@ class ReuUiKitFieldPassword extends StatelessWidget {
     this.labelPasswordField = "",
     this.suffixWidget,
     this.defaultOnChange,
+    this.useShadowBox = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    if (useShadowBox) {
+      return InputDecorationBoldShabow(
+        labelText: labelPasswordField,
+        child: ReuUiKitTextField(
+          controller: controller,
+          obscure: !showPassword,
+          counter: counter,
+          onChanged: onChanged,
+          useSuffix: true,
+          contentPadding: const EdgeInsets.only(top: 15),
+          cursorHeight: 25,
+          border: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
+          suffixWidget: suffixWidget ??
+              IconButton(
+                icon: Icon(
+                  showPassword ? Icons.visibility_off : Icons.visibility,
+                  color: Colors.black.withOpacity(.5),
+                ),
+                onPressed: defaultOnChange,
+              ),
+        ),
+      );
+    }
     return ReuUiKitTextField(
-      labelText: labelPasswordField,
       controller: controller,
       obscure: !showPassword,
       counter: counter,
       onChanged: onChanged,
       useSuffix: true,
+      contentPadding: const EdgeInsets.only(top: 13),
       suffixWidget: suffixWidget ??
           IconButton(
-            icon: Icon(showPassword ? Icons.visibility_off : Icons.visibility),
+            icon: Icon(
+              showPassword ? Icons.visibility_off : Icons.visibility,
+            ),
             onPressed: defaultOnChange,
           ),
     );
