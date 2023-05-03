@@ -1,7 +1,6 @@
 {
     "openai_key": "",
     "modules": [
-        "login",
-        "dashboard"
+        "image_picker_field"
     ]
 }
