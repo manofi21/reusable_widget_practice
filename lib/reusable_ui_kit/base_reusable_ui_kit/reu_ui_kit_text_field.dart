@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ReuUiKitTextField extends StatefulWidget {
   final String? id;
-  final String labelText;
+  final String? labelText;
   final String? value;
   final String? hint;
   final String? Function(String?)? validator;
@@ -23,10 +23,13 @@ class ReuUiKitTextField extends StatefulWidget {
   final InputBorder? border;
   final int maxLines;
   final TextInputType textInputType;
+  final bool useBorder;
+  final EdgeInsetsGeometry? contentPadding;
+  final double? cursorHeight;
 
   const ReuUiKitTextField({
     Key? key,
-    required this.labelText,
+    this.labelText,
     this.id,
     this.value,
     this.validator,
@@ -48,6 +51,9 @@ class ReuUiKitTextField extends StatefulWidget {
     this.counter,
     this.maxLines = 1,
     this.textInputType = TextInputType.text,
+    this.useBorder = true,
+    this.contentPadding = EdgeInsets.zero,
+    this.cursorHeight,
   }) : super(key: key);
 
   @override
@@ -74,14 +80,15 @@ class _ReuUiKitTextFieldState extends State<ReuUiKitTextField> {
       obscureText: widget.obscure,
       maxLines: widget.maxLines,
       keyboardType: widget.textInputType,
+      cursorHeight: widget.cursorHeight,
       decoration: InputDecoration(
         alignLabelWithHint: true,
         labelText: widget.labelText,
-        contentPadding: EdgeInsets.zero,
+        contentPadding: widget.contentPadding,
         labelStyle: const TextStyle(
           color: Colors.blueGrey,
         ),
-        border: widget.border,
+        border: widget.useBorder ? widget.border : InputBorder.none,
         focusedBorder: widget.border,
         counter: widget.counter == null && !widget.defaultCounter
             ? Container()
