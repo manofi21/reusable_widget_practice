@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/reusable_ui_kit/entities/reu_checkbox_model.dart';
 
+import '../input_decoration_bold_shadow.dart';
+
 class ReuUiKitFieldCheckbox<T> extends StatefulWidget {
   final String label;
   final String? hint;
@@ -10,6 +12,8 @@ class ReuUiKitFieldCheckbox<T> extends StatefulWidget {
   final Future<List<ReuChecboxModel<T>>> Function()? onFuture;
   final void Function(List<ReuChecboxModel<T>> values) onChanged;
   final ScrollPhysics? physics;
+  final bool useShadowBox;
+
 
   const ReuUiKitFieldCheckbox({
     Key? key,
@@ -19,6 +23,8 @@ class ReuUiKitFieldCheckbox<T> extends StatefulWidget {
     this.onFuture,
     this.hint,
     required this.onChanged, this.physics,
+    this.useShadowBox = false,
+
   }) : super(key: key);
 
   @override
@@ -51,14 +57,7 @@ class _ReuUiKitFieldCheckboxState<T> extends State<ReuUiKitFieldCheckbox<T>> {
       validator: (value) => widget.validator!(items),
       enabled: true,
       builder: (FormFieldState<bool> field) {
-        return InputDecorator(
-          decoration: InputDecoration(
-            labelText: widget.label,
-            errorText: field.errorText,
-            border: InputBorder.none,
-            helperText: widget.hint,
-          ),
-          child: ListView.builder(
+        final listOfCheckbox = ListView.builder(
             shrinkWrap: true,
             itemCount: items.length,
             physics: widget.physics ?? const NeverScrollableScrollPhysics(),
@@ -82,7 +81,23 @@ class _ReuUiKitFieldCheckboxState<T> extends State<ReuUiKitFieldCheckbox<T>> {
                 },
               );
             },
+          );
+        
+        if (widget.useShadowBox) {
+          return InputDecorationBoldShabow(
+            labelText: widget.label,
+            child: listOfCheckbox,
+          );
+        }
+        
+        return InputDecorator(
+          decoration: InputDecoration(
+            labelText: widget.label,
+            errorText: field.errorText,
+            border: InputBorder.none,
+            helperText: widget.hint,
           ),
+          child: listOfCheckbox,
         );
       },
     );
