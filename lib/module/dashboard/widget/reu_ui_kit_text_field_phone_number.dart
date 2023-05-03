@@ -16,6 +16,7 @@ class ReuUiKitTextFieldPhoneNumber extends StatelessWidget {
       labelText: "Phone Number",
       controller: controller,
       prefixWidget: prefixRegionINDOCall,
+      useShadowBox: true,
     );
   }
 }
