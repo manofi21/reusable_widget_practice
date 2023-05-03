@@ -37,13 +37,11 @@ class DashboardView extends StatefulWidget {
                     ReuUiKitTextFieldName(
                       controller: controller.fistNameController,
                       fieldNameType: FieldNameType.firstName,
-                      useShadowBox: true,
                     ),
                     const SizedBox(width: 10),
                     ReuUiKitTextFieldName(
                       controller: controller.lastNameController,
                       fieldNameType: FieldNameType.lastName,
-                      useShadowBox: true,
                     )
                   ],
                 ),
@@ -73,22 +71,25 @@ class DashboardView extends StatefulWidget {
                   useShadowBox: true,
                 ),
                 ReuUiKitFieldCheckbox<String>(
-                  label: "Choose Prefereance",
+                  label: "Choose Hair Type",
                   items: [
                     ReuChecboxModel<String>(value: 'Long Hair'),
                     ReuChecboxModel<String>(value: 'Short Hair'),
                     ReuChecboxModel<String>(value: 'Twin-tail Hair'),
                   ],
                   onChanged: (onListChange) {},
+                  useShadowBox: true,
                 ),
                 ReuUiKitFieldRadiobutton<String>(
-                  label: "Choose Referance",
+                  label: "Choose Roles",
                   items: [
-                    ReuRadioButtonModel<String>(value: 'Long Hair'),
-                    ReuRadioButtonModel<String>(value: 'Short Hair'),
-                    ReuRadioButtonModel<String>(value: 'Twin-tail Hair'),
+                    ReuRadioButtonModel<String>(value: 'Mage'),
+                    ReuRadioButtonModel<String>(value: 'Range'),
+                    ReuRadioButtonModel<String>(value: 'Swordman'),
+                    ReuRadioButtonModel<String>(value: 'Tanker'),
                   ],
                   onChanged: (selectedValue) {},
+                  useShadowBox: true,
                 ),
                 ImagePickerFieldView(
                   labelText: "Add Image",
