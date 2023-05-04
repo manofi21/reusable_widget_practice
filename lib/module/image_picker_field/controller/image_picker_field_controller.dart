@@ -1,9 +1,8 @@
 import 'dart:typed_data';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/state_util.dart';
-import 'package:image_picker/image_picker.dart';
+import '../../../function/get_image_to_list.dart';
 import '../view/image_picker_field_view.dart';
 
 class ImagePickerFieldController extends State<ImagePickerFieldView>
@@ -42,21 +41,4 @@ class ImagePickerFieldController extends State<ImagePickerFieldView>
 
   @override
   Widget build(BuildContext context) => widget.build(context, this);
-}
-
-/// Funcion can be change/update.
-Future<List<XFile>> getFileMultiplePlatform() async {
-  return ImagePicker().pickMultiImage();
-}
-
-extension ListXFileExtension on List<XFile> {
-  String get nameOfValue {
-    final getListName = map((e) => '"${e.name}"').toList();
-    final valuesOfName = getListName.join(', ');
-    return valuesOfName;
-  }
-
-  Future<List<Uint8List>> get listOfUint8ListImg async {
-    return Future.wait(map((e) => e.readAsBytes()).toList());
-  }
 }
