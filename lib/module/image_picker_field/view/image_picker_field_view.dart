@@ -8,11 +8,13 @@ class ImagePickerFieldView extends StatefulWidget {
   final String? Function(String?)? validator;
   final void Function(String) onChanged;
   final String labelText;
+  final List<Widget> footWidget;
   const ImagePickerFieldView({
     Key? key,
     this.validator,
     required this.onChanged,
     this.labelText = "",
+    this.footWidget = const [],
   }) : super(key: key);
 
   Widget build(context, ImagePickerFieldController controller) {
@@ -33,6 +35,10 @@ class ImagePickerFieldView extends StatefulWidget {
         const SizedBox(height: 10),
         MyStaggeredGridview(
           listUint8List: controller.listMultipleImage,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: footWidget,
         )
       ],
     );
