@@ -17,7 +17,7 @@ import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_fi
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_dropdown.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_radiobutton.dart';
 
-import '../../image_picker_field/view/image_picker_field_widget.dart';
+import '../widget/image_picker_field_widget.dart';
 
 class DashboardView extends StatefulWidget {
   const DashboardView({Key? key}) : super(key: key);
@@ -150,34 +150,3 @@ class DashboardView extends StatefulWidget {
   @override
   State<DashboardView> createState() => DashboardController();
 }
-
-/* 
-                ImagePickerFieldView(
-                  labelText: "Add Your Referance/Image Here",
-                  onChanged: (value) {},
-                  isUseList: true,
-                  listImages: controller.listImg,
-                  footWidget: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: TwoButtonInsideAWidget(
-                        isSaved: controller.listImg.isNotEmpty,
-                        firstWidget: const ReuUiKitButtonDisable(
-                          sizeButton: Size(60, 30),
-                          textLabel: "Image Empty",
-                          fontSize: 13,
-                          onPressed: null,
-                        ),
-                        secondWidget: ReuUiKitButtonWarning(
-                          sizeButton: const Size(60, 30),
-                          fontSize: 13,
-                          onPressed: () {
-                            controller.listImg.clear();
-                          },
-                          textLabel: "Clear Images",
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-*/

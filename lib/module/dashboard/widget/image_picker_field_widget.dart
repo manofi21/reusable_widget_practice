@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_image_picker.dart';
-import '../widget/stagged_grid_view_widget.dart';
+import '../../image_picker_field/widget/stagged_grid_view_widget.dart';
 
 class ImagePickerFieldWidget extends StatelessWidget {
   final String? Function(String?)? validator;
