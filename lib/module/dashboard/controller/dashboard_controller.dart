@@ -1,10 +1,22 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/state_util.dart';
+import '../../../function/get_image_to_list.dart';
 import '../view/dashboard_view.dart';
 
-class DashboardController extends State<DashboardView> implements MvcController {
+class DashboardController extends State<DashboardView>
+    implements MvcController {
   static late DashboardController instance;
   late DashboardView view;
+
+  var _isAlreadySaved = false;
+  bool get isAlreadySave => _isAlreadySaved;
+  set isAlreadySave(bool isSaved) {
+    _isAlreadySaved = isSaved;
+    setState(() {});
+  }
+
+  bool isLoading = false;
 
   final formKey = GlobalKey<FormState>();
 
@@ -16,6 +28,25 @@ class DashboardController extends State<DashboardView> implements MvcController 
   final passwordController = TextEditingController();
 
   final addressController = TextEditingController();
+
+  final imagePickerTextController = TextEditingController();
+
+  List<Uint8List> listImg = <Uint8List>[];
+
+  Future<void> onPressedImagePicker() async {
+    isLoading = true;
+    final getImageResult = await getFileMultiplePlatform();
+    listImg = await getImageResult.listOfUint8ListImg;
+    imagePickerTextController.text = getImageResult.nameOfValue;
+    isLoading = false;
+    setState(() {});
+  }
+
+  void clearListImg() {
+    listImg.clear();
+    imagePickerTextController.clear();
+    setState(() {});
+  }
 
   @override
   void initState() {
