@@ -33,7 +33,6 @@ class ContainerOutlinetShdowBox extends StatelessWidget {
       child: Container(
           width: width ?? double.infinity,
           height: height ?? 40,
-          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(color: color, width: 1.4),
