@@ -24,14 +24,13 @@ class ReuUiKitOutlinedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: InkWell(
-        onTap: onPressed,
-        child: ContainerOutlinetShdowBox(
-          width: width,
-          height: height,
-          color: color,
+    return InkWell(
+      onTap: onPressed,
+      child: ContainerOutlinetShdowBox(
+        width: width,
+        height: height,
+        color: color,
+        child: Center(
           child: OutlinedText(
             text: Text(
               textLabel,
