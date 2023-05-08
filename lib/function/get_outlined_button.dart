@@ -11,29 +11,38 @@ Widget getOutlinedButton({
   required void Function() onPressed,
   String? buttonTitle,
 }) {
+  const sizedBox = Size(120, 45);
   switch (outlinedType) {
     case OutlinedButtonEnum.danger:
       return ReuUiKitOutlinedButtonDanger(
+        fontSize: 20,
         textLabel: buttonTitle,
         onPressed: onPressed,
+        sizeButton: sizedBox,
       );
 
     case OutlinedButtonEnum.disable:
       return ReuUiKitOutlinedButtonDisable(
+        fontSize: 20,
         textLabel: buttonTitle,
         onPressed: onPressed,
+        sizeButton: sizedBox,
       );
 
     case OutlinedButtonEnum.success:
       return ReuUiKitOutlinedButtonSuccess(
+        fontSize: 20,
         textLabel: buttonTitle,
         onPressed: onPressed,
+        sizeButton: sizedBox,
       );
 
     case OutlinedButtonEnum.warning:
       return ReuUiKitOutlinedButtonWarning(
+        fontSize: 20,
         textLabel: buttonTitle,
         onPressed: onPressed,
+        sizeButton: sizedBox,
       );
     default:
       return Container();
