@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/enum/outlined_button_enum.dart';
 import 'package:form_tutorial/function/get_outlined_button.dart';
@@ -8,7 +10,7 @@ Future<void> reuUiKitDialog({
   required BuildContext context,
   required String titleDialog,
   required String buttonTitle,
-  required void Function() onPressed,
+  required FutureOr<void> Function() onPressed,
   required OutlinedButtonEnum outlinedType,
   List<Widget> otherWidget = const [],
 }) async {
