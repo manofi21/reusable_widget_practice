@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -74,5 +73,18 @@ Future<void> clearImageDialog(
       )
     ],
     outlinedType: OutlinedButtonEnum.warning,
+  );
+}
+
+Future<void> disabledClearButtonDialog(BuildContext context) async {
+  return reuUiKitDialog(
+    context: context,
+    titleDialog: "List Image Kosong. "
+        "Button Terdisable",
+    buttonTitle: "Close",
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    outlinedType: OutlinedButtonEnum.disable,
   );
 }

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:form_tutorial/core.dart';
 import 'package:form_tutorial/module/dashboard/widget/row_space_evenly_widget.dart';
 import 'package:form_tutorial/module/dashboard/widget/two_button_inside_a_widget.dart';
+import 'package:form_tutorial/reusable_ui_kit/base_reusable_ui_kit/reu_ui_kit_dialog.dart';
 import 'package:form_tutorial/reusable_ui_kit/entities/reu_checkbox_model.dart';
 import 'package:form_tutorial/reusable_ui_kit/entities/reu_dropdown_model.dart';
 import 'package:form_tutorial/reusable_ui_kit/entities/reu_radiobutton_model.dart';
@@ -17,6 +18,7 @@ import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_fi
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_dropdown.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_radiobutton.dart';
 
+import '../../../enum/outlined_button_enum.dart';
 import '../widget/image_picker_field_widget.dart';
 
 class DashboardView extends StatefulWidget {
@@ -98,7 +100,8 @@ class DashboardView extends StatefulWidget {
                   useShadowBox: true,
                 ),
                 ImagePickerFieldWidget(
-                  imagePickerTextController: controller.imagePickerTextController,
+                  imagePickerTextController:
+                      controller.imagePickerTextController,
                   isLoading: controller.isLoading,
                   listMultipleImage: controller.listImg,
                   labelText: "Add Your Referance/Image Here",
@@ -108,16 +111,16 @@ class DashboardView extends StatefulWidget {
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: TwoButtonInsideAWidget(
                         isSaved: controller.listImg.isNotEmpty,
-                        firstWidget: const ReuUiKitButtonDisable(
-                          sizeButton: Size(60, 30),
+                        firstWidget: ReuUiKitButtonDisable(
+                          sizeButton: const Size(60, 30),
                           textLabel: "Image Empty",
                           fontSize: 13,
-                          onPressed: null,
+                          onPressed: controller.onDisabledClearButtonDialog,
                         ),
                         secondWidget: ReuUiKitButtonWarning(
                           sizeButton: const Size(60, 30),
                           fontSize: 13,
-                          onPressed: controller.clearListImg,
+                          onPressed: controller.onClearImageDialog,
                           textLabel: "Clear Images",
                         ),
                       ),
@@ -128,17 +131,16 @@ class DashboardView extends StatefulWidget {
                   isSaved: controller.isAlreadySave,
                   firstWidget: ReuUiKitButtonSuccess(
                     textLabel: "Save",
-                    onPressed: () {
-                      controller.isAlreadySave = true;
+                    onPressed: () async {
+                      await controller.onSuccessSaveDialog();
                     },
                   ),
                   secondWidget: ReuUiKitButtonDanger(
-                    textLabel: "Clear",
-                    onPressed: () {
-                      controller.isAlreadySave = false;
-                    },
+                    textLabel: "Remove Data",
+                    onPressed: controller.onRemoveDataFunction,
                   ),
-                )
+                ),
+                const SizedBox(height: 10),
               ],
             ),
           ),

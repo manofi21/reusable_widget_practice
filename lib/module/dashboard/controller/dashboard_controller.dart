@@ -76,6 +76,10 @@ class DashboardController extends State<DashboardView>
     setState(() {});
   }
 
+  void onDisabledClearButtonDialog() {
+    disabledClearButtonDialog(context);
+  }
+
   @override
   void initState() {
     instance = this;
