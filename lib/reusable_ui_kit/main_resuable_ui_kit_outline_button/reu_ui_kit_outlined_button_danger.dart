@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../base_reusable_ui_kit/reu_ui_kit_text_outlined_button.dart';
 
-class ReuUiKitButtonDanger extends StatelessWidget {
+class ReuUiKitOutlinedButtonDanger extends StatelessWidget {
   final String? textLabel;
   final void Function()? onPressed;
   final Size? sizeButton;
   final double? fontSize;
-  const ReuUiKitButtonDanger({
+  const ReuUiKitOutlinedButtonDanger({
     super.key,
     this.textLabel,
     this.onPressed,
