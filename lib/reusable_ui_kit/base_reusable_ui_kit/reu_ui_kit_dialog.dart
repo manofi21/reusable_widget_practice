@@ -10,6 +10,7 @@ Future<void> reuUiKitDialog({
   required String buttonTitle,
   required void Function() onPressed,
   required OutlinedButtonEnum outlinedType,
+  List<Widget> otherWidget = const [],
 }) async {
   await showDialog(
     context: context,
@@ -19,6 +20,7 @@ Future<void> reuUiKitDialog({
         onPressed: onPressed,
         buttonTitle: buttonTitle,
         outlinedType: outlinedType,
+        otherWidget: otherWidget,
       );
     },
   );
@@ -29,11 +31,14 @@ class ReuUiKitDialog extends StatelessWidget {
   final String buttonTitle;
   final void Function() onPressed;
   final OutlinedButtonEnum outlinedType;
+  final List<Widget> otherWidget;
   const ReuUiKitDialog({
     super.key,
     required this.dialogRitle,
     required this.onPressed,
-    required this.buttonTitle, required this.outlinedType,
+    required this.buttonTitle,
+    required this.outlinedType,
+    this.otherWidget = const [],
   });
 
   @override
@@ -60,6 +65,7 @@ class ReuUiKitDialog extends StatelessWidget {
               onPressed: onPressed,
               buttonTitle: buttonTitle,
             ),
+            ...otherWidget,
             const SizedBox(height: 10),
           ],
         ),
