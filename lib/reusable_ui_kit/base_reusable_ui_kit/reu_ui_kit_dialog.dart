@@ -1,0 +1,69 @@
+import 'package:flutter/material.dart';
+import 'package:form_tutorial/enum/outlined_button_enum.dart';
+import 'package:form_tutorial/function/get_outlined_button.dart';
+
+import '../container_solid_shadow_box.dart';
+
+Future<void> reuUiKitDialog({
+  required BuildContext context,
+  required String titleDialog,
+  required String buttonTitle,
+  required void Function() onPressed,
+  required OutlinedButtonEnum outlinedType,
+}) async {
+  await showDialog(
+    context: context,
+    builder: (context) {
+      return ReuUiKitDialog(
+        dialogRitle: titleDialog,
+        onPressed: onPressed,
+        buttonTitle: buttonTitle,
+        outlinedType: outlinedType,
+      );
+    },
+  );
+}
+
+class ReuUiKitDialog extends StatelessWidget {
+  final String dialogRitle;
+  final String buttonTitle;
+  final void Function() onPressed;
+  final OutlinedButtonEnum outlinedType;
+  const ReuUiKitDialog({
+    super.key,
+    required this.dialogRitle,
+    required this.onPressed,
+    required this.buttonTitle, required this.outlinedType,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: ContainerSolidShadowBox(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.info_outline),
+                  const SizedBox(width: 10),
+                  Text(dialogRitle)
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            getOutlinedButton(
+              outlinedType: outlinedType,
+              onPressed: onPressed,
+              buttonTitle: buttonTitle,
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
+      ),
+    );
+  }
+}
