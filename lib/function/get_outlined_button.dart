@@ -12,7 +12,7 @@ Widget getOutlinedButton({
   required void Function() onPressed,
   String? buttonTitle,
 }) {
-  const sizedBox = Size(120, 45);
+  const sizedBox = Size(130, 45);
   switch (outlinedType) {
     case OutlinedButtonEnum.danger:
       return ReuUiKitOutlinedButtonDanger(
@@ -48,8 +48,8 @@ Widget getOutlinedButton({
 
     case OutlinedButtonEnum.info:
       return ReuUiKitOutlinedButtonInfo(
-        fontSize: 20,
-        textLabel: buttonTitle,
+        fontSize: 16,
+        textLabel: buttonTitle ?? "OK, I Undestand",
         onPressed: onPressed,
         sizeButton: sizedBox,
       );

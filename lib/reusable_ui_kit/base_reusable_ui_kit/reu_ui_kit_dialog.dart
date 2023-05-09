@@ -9,7 +9,7 @@ import '../container_solid_shadow_box.dart';
 Future<void> reuUiKitDialog({
   required BuildContext context,
   required String titleDialog,
-  required String buttonTitle,
+  String? buttonTitle,
   required FutureOr<void> Function() onPressed,
   required OutlinedButtonEnum outlinedType,
   List<Widget> otherWidget = const [],
@@ -30,7 +30,7 @@ Future<void> reuUiKitDialog({
 
 class ReuUiKitDialog extends StatelessWidget {
   final String dialogRitle;
-  final String buttonTitle;
+  final String? buttonTitle;
   final void Function() onPressed;
   final OutlinedButtonEnum outlinedType;
   final List<Widget> otherWidget;
@@ -38,7 +38,7 @@ class ReuUiKitDialog extends StatelessWidget {
     super.key,
     required this.dialogRitle,
     required this.onPressed,
-    required this.buttonTitle,
+    this.buttonTitle,
     required this.outlinedType,
     this.otherWidget = const [],
   });
