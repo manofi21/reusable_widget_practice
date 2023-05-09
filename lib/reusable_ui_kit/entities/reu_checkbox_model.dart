@@ -24,6 +24,14 @@ class ReuChecboxModel<T> {
     );
   }
 
+  ReuChecboxModel<T> onUserInsertNewValue({required String userInput}) {
+    return ReuChecboxModel<T>(
+      value: value,
+      isBoxChecked: true,
+      label: userInput,
+    );
+  }
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
