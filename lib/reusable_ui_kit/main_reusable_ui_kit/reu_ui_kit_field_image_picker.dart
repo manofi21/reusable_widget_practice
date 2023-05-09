@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../main_resuable_ui_kit_button/reu_ui_kit_button_info.dart';
+
 class ReuUiKitFieldImagePicker extends StatelessWidget {
   final String? value;
   final String? hint;
@@ -18,6 +20,9 @@ class ReuUiKitFieldImagePicker extends StatelessWidget {
   final FutureOr<void> Function()? onPressed;
   final String labelText;
   final String? imageUrl;
+
+  /// For function Info Button. In null, button hided.
+  final void Function()? onPressedInfo;
 
   const ReuUiKitFieldImagePicker({
     Key? key,
@@ -32,6 +37,7 @@ class ReuUiKitFieldImagePicker extends StatelessWidget {
     this.onPressed,
     this.labelText = "",
     this.imageUrl,
+    this.onPressedInfo,
   }) : super(key: key);
 
   @override
@@ -98,57 +104,68 @@ class ReuUiKitFieldImagePicker extends StatelessWidget {
             width: 12.0,
           ),
           Expanded(
-            child: FormField(
-                initialValue: false,
-                validator: (value) {
-                  final currValidator = validator;
-                  if (currValidator != null) {
-                    return currValidator(imageUrl);
-                  }
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                onPressedInfo != null ? 
+                ReuUiKitButtonInfo(
+                  textLabel: "Show Info",
+                  onPressed: onPressedInfo,
+                  sizeButton: const Size(70, 15),
+                ) : Container(),
+                FormField(
+                    initialValue: false,
+                    validator: (value) {
+                      final currValidator = validator;
+                      if (currValidator != null) {
+                        return currValidator(imageUrl);
+                      }
 
-                  return null;
-                },
-                enabled: true,
-                builder: (FormFieldState<bool> field) {
-                  return TextFormField(
-                    controller: textController,
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: labelText,
-                      labelStyle: const TextStyle(
-                        color: Colors.blueGrey,
-                      ),
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                      suffixIcon: Transform.scale(
-                        scale: 0.8,
-                        child: SizedBox(
-                          width: 80.0,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: isLoading
-                                  ? Colors.grey[300]
-                                  : Colors.blueGrey,
+                      return null;
+                    },
+                    enabled: true,
+                    builder: (FormFieldState<bool> field) {
+                      return TextFormField(
+                        controller: textController,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          labelText: labelText,
+                          labelStyle: const TextStyle(
+                            color: Colors.blueGrey,
+                          ),
+                          enabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.blueGrey,
                             ),
-                            onPressed: onPressed,
-                            child: const Text(
-                              "Browse",
-                              style: TextStyle(
-                                fontSize: 10.0,
+                          ),
+                          suffixIcon: Transform.scale(
+                            scale: 0.8,
+                            child: SizedBox(
+                              width: 80.0,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: isLoading
+                                      ? Colors.grey[300]
+                                      : Colors.blueGrey,
+                                ),
+                                onPressed: onPressed,
+                                child: const Text(
+                                  "Browse",
+                                  style: TextStyle(
+                                    fontSize: 10.0,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
+                          helperText: hint,
+                          errorText: field.errorText,
                         ),
-                      ),
-                      helperText: hint,
-                      errorText: field.errorText,
-                    ),
-                    onChanged: onFieldChanged,
-                  );
-                }),
+                        onChanged: onFieldChanged,
+                      );
+                    }),
+              ],
+            ),
           ),
         ],
       ),

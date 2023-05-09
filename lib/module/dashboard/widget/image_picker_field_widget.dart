@@ -16,6 +16,8 @@ class ImagePickerFieldWidget extends StatelessWidget {
   final FutureOr<void> Function()? onPressed;
   final List<Uint8List> listMultipleImage;
 
+  final void Function() onPressedInfo;
+
   const ImagePickerFieldWidget({
     super.key,
     this.validator,
@@ -25,6 +27,7 @@ class ImagePickerFieldWidget extends StatelessWidget {
     required this.imagePickerTextController,
     required this.isLoading,
     required this.listMultipleImage,
+    required this.onPressedInfo,
   });
 
   @override
@@ -38,6 +41,7 @@ class ImagePickerFieldWidget extends StatelessWidget {
           onFieldChanged: (p0) {},
           isLoading: isLoading,
           onPressed: onPressed,
+          onPressedInfo: onPressedInfo,
         ),
         const SizedBox(height: 10),
         MyStaggeredGridview(
