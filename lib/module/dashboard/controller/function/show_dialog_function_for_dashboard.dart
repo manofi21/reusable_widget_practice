@@ -92,7 +92,7 @@ Future<void> disabledClearButtonDialog(BuildContext context) async {
 Future<void> infoImagePickerDialog(BuildContext context) async {
   return reuUiKitDialog(
     context: context,
-    titleDialog: "Untuk memilih Image yang sesuai\ndengan role. Bisa Image tentang armor,\nsenjata, atau referensi lainnya",
+    titleDialog: "Field Untuk anda mengimput Image yang sesuai dengan role atau kosmetik yang anda pilih. Bisa Image tentang armor,senjata, atau referensi lainnya",
     onPressed: () {
       Navigator.pop(context);
     },
@@ -103,7 +103,7 @@ Future<void> infoImagePickerDialog(BuildContext context) async {
 Future<void> infoFormRadioButtonDialog(BuildContext context) async {
   return reuUiKitDialog(
     context: context,
-    titleDialog: "Untuk memilih Roles yang user inginkan. User\n juga bisa mengimput rolenya sendiri dengan mensubmit\ntext box yang mereka sudah ketik",
+    titleDialog: "Form untuk anda memilih Roles yang sesuai dengan anda. Anda juga bisa menginput role anda sendiri dengan mensubmit text box yang sudah anda ketikan",
     onPressed: () {
       Navigator.pop(context);
     },
@@ -114,7 +114,7 @@ Future<void> infoFormRadioButtonDialog(BuildContext context) async {
 Future<void> infoFormCheckboxButtonDialog(BuildContext context) async {
   return reuUiKitDialog(
     context: context,
-    titleDialog: "Untuk memilih Kosmetik yang user inginkan seperti\ncontohnya jenis rambut.\nUser juga bisa mengimput rolenya sendiri dengan mensubmit\ntext box yang mereka sudah ketik",
+    titleDialog: "Form untuk anda memilih Kosmetik yang sesuai dengan anda seperti contohnya jenis rambut. Anda bisa mengimput rolenya sendiri dengan mensubmit text box yang sudah anda ketikan",
     onPressed: () {
       Navigator.pop(context);
     },
@@ -125,7 +125,7 @@ Future<void> infoFormCheckboxButtonDialog(BuildContext context) async {
 Future<void> infoDropdownDialog(BuildContext context) async {
   return reuUiKitDialog(
     context: context,
-    titleDialog: "Untuk hobi/preferesi yang inginkan user",
+    titleDialog: "Form Untuk anda menginput hobi/preferesi",
     onPressed: () {
       Navigator.pop(context);
     },
@@ -147,7 +147,7 @@ Future<void> infoFirstCharacterNameDialog(BuildContext context) async {
 Future<void> infoLastCharacterNameDialog(BuildContext context) async {
   return reuUiKitDialog(
     context: context,
-    titleDialog: "Field untuk anda mengimput nama terakhir karaktermu",
+    titleDialog: "Field untuk anda mengimput\nnama terakhir karaktermu",
     onPressed: () {
       Navigator.pop(context);
     },
@@ -158,7 +158,7 @@ Future<void> infoLastCharacterNameDialog(BuildContext context) async {
 Future<void> infoPhoneNumberDialog(BuildContext context) async {
   return reuUiKitDialog(
     context: context,
-    titleDialog: "Field untuk anda menginput nomor telfon mu.\nUntuk berjaga - jaga anda perlu dihubungi",
+    titleDialog: "Field untuk anda menginput nomor\ntelfon mu.Untuk berjaga - jaga\nanda perlu dihubungi",
     onPressed: () {
       Navigator.pop(context);
     },
