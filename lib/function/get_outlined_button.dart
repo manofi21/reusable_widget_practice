@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_resuable_ui_kit_outline_button/reu_ui_kit_outlined_button_danger.dart';
+import 'package:form_tutorial/reusable_ui_kit/main_resuable_ui_kit_outline_button/reu_ui_kit_outlined_button_info.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_resuable_ui_kit_outline_button/reu_ui_kit_outlined_button_warning.dart';
 
 import '../enum/outlined_button_enum.dart';
@@ -39,6 +40,14 @@ Widget getOutlinedButton({
 
     case OutlinedButtonEnum.warning:
       return ReuUiKitOutlinedButtonWarning(
+        fontSize: 20,
+        textLabel: buttonTitle,
+        onPressed: onPressed,
+        sizeButton: sizedBox,
+      );
+
+    case OutlinedButtonEnum.info:
+      return ReuUiKitOutlinedButtonInfo(
         fontSize: 20,
         textLabel: buttonTitle,
         onPressed: onPressed,
