@@ -3,6 +3,9 @@ import 'package:form_tutorial/reusable_ui_kit/entities/reu_radiobutton_model.dar
 
 import '../input_decoration_bold_shadow.dart';
 
+final otherFieldFocuseNode = FocusNode();
+final textEditingFieldController = TextEditingController();
+
 class ReuUiKitFieldRadiobutton<T> extends StatefulWidget {
   final String label;
   final List<ReuRadioButtonModel<T>> items;
@@ -14,6 +17,9 @@ class ReuUiKitFieldRadiobutton<T> extends StatefulWidget {
   final ScrollPhysics? physics;
   final bool useShadowBox;
 
+  /// Param for intial other. Add this for allow user can input their options 
+  final ReuRadioButtonModel<T>? initialOther;
+
   const ReuUiKitFieldRadiobutton({
     super.key,
     this.validator,
@@ -21,6 +27,7 @@ class ReuUiKitFieldRadiobutton<T> extends StatefulWidget {
     required this.label,
     required this.items,
     required this.onChanged,
+    this.initialOther,
     this.physics,
     this.useShadowBox = false,
   });
@@ -34,6 +41,7 @@ class _ReuUiKitFieldRadiobuttonState<T>
     extends State<ReuUiKitFieldRadiobutton<T>> {
   List<ReuRadioButtonModel<T>> items = [];
   ReuRadioButtonModel<T>? selectedValue;
+  bool isUserAllowCustomInput = false;
 
   @override
   void initState() {
@@ -42,6 +50,14 @@ class _ReuUiKitFieldRadiobuttonState<T>
     final indexOfRadio = widget.indexOfInitialValue;
     assert(indexOfRadio == null || indexOfRadio < widget.items.length - 1);
     selectedValue = indexOfRadio != null ? items[indexOfRadio] : null;
+    isUserAllowCustomInput = widget.initialOther != null;
+    otherFieldFocuseNode.addListener(() {
+      if (otherFieldFocuseNode.hasFocus) {
+        setState(() {
+          selectedValue = widget.initialOther;
+        });
+      }
+    });
   }
 
   @override
@@ -53,13 +69,56 @@ class _ReuUiKitFieldRadiobuttonState<T>
       builder: (FormFieldState<bool> field) {
         final listOfRadioButton = ListView.builder(
           shrinkWrap: true,
-          itemCount: items.length,
+          itemCount: isUserAllowCustomInput ? items.length + 1 : items.length,
           physics: widget.physics ?? const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            var item = items[index];
+            if (index == items.length && isUserAllowCustomInput) {
+              return RadioListTile<ReuRadioButtonModel<T>>(
+                value: widget.initialOther!,
+                groupValue: selectedValue,
+                title: TextField(
+                  textCapitalization: TextCapitalization.words,
+                  focusNode: otherFieldFocuseNode,
+                  controller: textEditingFieldController,
+                  onChanged: (_) {
+                    if (selectedValue != widget.initialOther) {
+                      selectedValue = widget.initialOther;
+                    }
+                  },
+                  onSubmitted: (value) {
+                    final newValueFromUser = widget.initialOther!
+                        .onUserInsesrtNewValue(userInput: value);
+                    setState(() {
+                      textEditingFieldController.clear();
+                      items.add(newValueFromUser);
+                      selectedValue = newValueFromUser;
+                    });
+                  },
+                ),
+                onChanged: (val) {
+                  if (val != null) {
+                    setState(() {
+                      selectedValue = val;
+                      field.didChange(true);
+                      widget.onChanged(val);
+                    });
+                  }
+                },
+                onFocusChange: (val) {
+                  setState(
+                    () {
+                      setState(() {});
+                      field.didChange(true);
+                    },
+                  );
+                },
+              );
+            }
 
+            var item = items[index];
             return RadioListTile<ReuRadioButtonModel<T>>(
-              title: Text(item.labelValue),
+              title: Text(item.labelValue,
+                  style: const TextStyle(color: Colors.black)),
               groupValue: selectedValue,
               selected: item.isRadioChoose,
               value: item,
@@ -67,6 +126,8 @@ class _ReuUiKitFieldRadiobuttonState<T>
                 if (val != null) {
                   setState(() {
                     selectedValue = val;
+                    textEditingFieldController.clear();
+                    otherFieldFocuseNode.unfocus();
                     field.didChange(true);
                     widget.onChanged(val);
                   });
