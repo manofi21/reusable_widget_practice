@@ -80,6 +80,43 @@ class DashboardController extends State<DashboardView>
     disabledClearButtonDialog(context);
   }
 
+  void onShowInfoImagePickerDialog() {
+    infoImagePickerDialog(context);
+  }
+
+  void onShowInfoRadioButtonDialog() {
+    infoFormRadioButtonDialog(context);
+  }
+
+  void onShowInfoChecboxButtonDialog() {
+    infoFormCheckboxButtonDialog(context);
+  }
+
+  void onShowinfoDropdownDialog() {
+    infoDropdownDialog(context);
+  }
+
+  void onShowInfoFirstCharacterDialog() {
+    infoFirstCharacterNameDialog(context);
+  }
+
+  void onShowInfoLastCharacterDialog() {
+    infoLastCharacterNameDialog(context);
+  }
+
+  void onShowInfoNoTelpDialog() {
+    infoPhoneNumberDialog(context);
+  }
+
+  void onShowInfoEmailDialog() {
+    infoEmailDialog(context);
+  }
+
+  void onShowInfoPassEmailDialog() {
+    infoPassEmailDialog(context);
+  }
+
+
   @override
   void initState() {
     instance = this;
