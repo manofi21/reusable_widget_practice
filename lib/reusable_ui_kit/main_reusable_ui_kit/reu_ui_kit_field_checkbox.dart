@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:form_tutorial/reusable_ui_kit/entities/reu_checkbox_model.dart';
 
@@ -47,13 +46,6 @@ class _ReuUiKitFieldCheckboxState<T> extends State<ReuUiKitFieldCheckbox<T>> {
     super.initState();
     items.addAll(List.from(widget.items));
     isUserAllowCustomInput = widget.initialOther != null;
-    otherFieldFocuseNode.addListener(() {
-      if (otherFieldFocuseNode.hasFocus) {
-        setState(() {
-          // selectedValue = widget.initialOther;
-        });
-      }
-    });
     loadItems();
   }
 
