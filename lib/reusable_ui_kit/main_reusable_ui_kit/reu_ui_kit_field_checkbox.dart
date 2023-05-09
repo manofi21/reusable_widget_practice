@@ -10,15 +10,15 @@ final textEditingFieldController = TextEditingController();
 class ReuUiKitFieldCheckbox<T> extends StatefulWidget {
   final String label;
   final String? hint;
-  final List<ReuChecboxModel<T>> items;
-  final String? Function(List<ReuChecboxModel<T>> item)? validator;
-  final Future<List<ReuChecboxModel<T>>> Function()? onFuture;
-  final void Function(List<ReuChecboxModel<T>> values) onChanged;
+  final List<ReuCheckboxModel<T>> items;
+  final String? Function(List<ReuCheckboxModel<T>> item)? validator;
+  final Future<List<ReuCheckboxModel<T>>> Function()? onFuture;
+  final void Function(List<ReuCheckboxModel<T>> values) onChanged;
   final ScrollPhysics? physics;
   final bool useShadowBox;
 
   /// Param for intial other. Add this for allow user can input their options 
-  final ReuChecboxModel<T>? initialOther;
+  final ReuCheckboxModel<T>? initialOther;
 
   const ReuUiKitFieldCheckbox({
     Key? key,
@@ -39,7 +39,7 @@ class ReuUiKitFieldCheckbox<T> extends StatefulWidget {
 }
 
 class _ReuUiKitFieldCheckboxState<T> extends State<ReuUiKitFieldCheckbox<T>> {
-  List<ReuChecboxModel<T>> items = [];
+  List<ReuCheckboxModel<T>> items = [];
   bool isUserAllowCustomInput = false;
 
   @override
@@ -60,7 +60,7 @@ class _ReuUiKitFieldCheckboxState<T> extends State<ReuUiKitFieldCheckbox<T>> {
   loadItems() async {
     if (widget.onFuture == null) return;
 
-    List<ReuChecboxModel<T>> newItems = await widget.onFuture!();
+    List<ReuCheckboxModel<T>> newItems = await widget.onFuture!();
     items = newItems;
     setState(() {});
   }

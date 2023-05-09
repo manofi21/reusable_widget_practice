@@ -1,10 +1,10 @@
-class ReuChecboxModel<T> {
+class ReuCheckboxModel<T> {
   /// If label is empty, the the value gonna be label itself
   final String? label;
   final T value;
   final bool isBoxChecked;
 
-  ReuChecboxModel({this.label, required this.value, this.isBoxChecked = false});
+  ReuCheckboxModel({this.label, required this.value, this.isBoxChecked = false});
 
   Map<String, dynamic> toMap() {
     return {
@@ -16,16 +16,16 @@ class ReuChecboxModel<T> {
 
   String get labelValue => label ?? value.toString();
 
-  ReuChecboxModel<T> onChangeIsBoxChecked(bool isBoxChanged) {
-    return ReuChecboxModel<T>(
+  ReuCheckboxModel<T> onChangeIsBoxChecked(bool isBoxChanged) {
+    return ReuCheckboxModel<T>(
       value: value,
       isBoxChecked: isBoxChanged,
       label: label,
     );
   }
 
-  ReuChecboxModel<T> onUserInsertNewValue({required String userInput}) {
-    return ReuChecboxModel<T>(
+  ReuCheckboxModel<T> onUserInsertNewValue({required String userInput}) {
+    return ReuCheckboxModel<T>(
       value: value,
       isBoxChecked: true,
       label: userInput,
@@ -35,7 +35,7 @@ class ReuChecboxModel<T> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ReuChecboxModel<T> &&
+      other is ReuCheckboxModel<T> &&
           runtimeType == other.runtimeType &&
           label == other.label &&
           value == other.value &&

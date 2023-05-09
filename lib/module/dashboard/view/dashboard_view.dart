@@ -81,11 +81,11 @@ class DashboardView extends StatefulWidget {
                 ReuUiKitFieldCheckbox<String>(
                   label: "Choose Hair Type",
                   items: [
-                    ReuChecboxModel<String>(value: 'Long Hair'),
-                    ReuChecboxModel<String>(value: 'Short Hair'),
-                    ReuChecboxModel<String>(value: 'Twin-tail Hair'),
+                    ReuCheckboxModel<String>(value: 'Long Hair'),
+                    ReuCheckboxModel<String>(value: 'Short Hair'),
+                    ReuCheckboxModel<String>(value: 'Twin-tail Hair'),
                   ],
-                  initialOther: ReuChecboxModel<String>(value: 'Other'),
+                  initialOther: ReuCheckboxModel<String>(value: 'Other'),
                   onChanged: (onListChange) {},
                   useShadowBox: true,
                 ),
