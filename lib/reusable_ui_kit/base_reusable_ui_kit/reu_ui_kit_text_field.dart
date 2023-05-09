@@ -26,7 +26,6 @@ class ReuUiKitTextField extends StatefulWidget {
   final bool useBorder;
   final EdgeInsetsGeometry? contentPadding;
   final double? cursorHeight;
-  final Widget? sidesLabelWidget;
 
   const ReuUiKitTextField({
     Key? key,
@@ -55,7 +54,6 @@ class ReuUiKitTextField extends StatefulWidget {
     this.useBorder = true,
     this.contentPadding = EdgeInsets.zero,
     this.cursorHeight,
-    this.sidesLabelWidget,
   }) : super(key: key);
 
   @override
@@ -85,14 +83,7 @@ class _ReuUiKitTextFieldState extends State<ReuUiKitTextField> {
       cursorHeight: widget.cursorHeight,
       decoration: InputDecoration(
         alignLabelWithHint: true,
-        label: widget.labelText != null
-            ? Row(
-                children: [
-                  Text(widget.labelText!),
-                  widget.sidesLabelWidget ?? Container()
-                ],
-              )
-            : Container(),
+        labelText: widget.labelText,
         contentPadding: widget.contentPadding,
         labelStyle: const TextStyle(
           color: Colors.blueGrey,
