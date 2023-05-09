@@ -57,7 +57,7 @@ class ReuUiKitDialog extends StatelessWidget {
                 children: [
                   const Icon(Icons.info_outline),
                   const SizedBox(width: 10),
-                  Text(dialogRitle)
+                  Expanded(child: Text(dialogRitle))
                 ],
               ),
             ),
