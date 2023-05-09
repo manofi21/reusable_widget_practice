@@ -5,9 +5,11 @@ import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_fi
 
 class ReuUiKitTextFieldPassword extends StatefulWidget {
   final TextEditingController controller;
+  final Widget? sidesLabelWidget;
   const ReuUiKitTextFieldPassword({
     super.key,
     required this.controller,
+    this.sidesLabelWidget,
   });
 
   Widget build(context, ReuUiKitTextFieldPasswordController stateController) {
@@ -19,6 +21,7 @@ class ReuUiKitTextFieldPassword extends StatefulWidget {
       showPassword: stateController.onShowPassword,
       useShadowBox: true,
       defaultOnChange: stateController.onChangeShowPassword,
+      sidesLabelWidget: sidesLabelWidget,
       counter: RichText(
         text: TextSpan(
           text: !stateController.statusPassword.isInit ? "STATUS : " : "",

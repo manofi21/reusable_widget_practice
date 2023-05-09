@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_tutorial/reusable_ui_kit/main_resuable_ui_kit_button/reu_ui_kit_button_info.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_numeric.dart';
 
 Widget get prefixRegionINDOCall => Container(
@@ -8,7 +9,12 @@ Widget get prefixRegionINDOCall => Container(
 
 class ReuUiKitTextFieldPhoneNumber extends StatelessWidget {
   final TextEditingController controller;
-  const ReuUiKitTextFieldPhoneNumber({super.key, required this.controller});
+  final Widget? sidesLabelWidget;
+  const ReuUiKitTextFieldPhoneNumber({
+    super.key,
+    required this.controller,
+    this.sidesLabelWidget,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +22,7 @@ class ReuUiKitTextFieldPhoneNumber extends StatelessWidget {
       labelText: "Phone Number",
       controller: controller,
       prefixWidget: prefixRegionINDOCall,
+      sidesLabelWidget: sidesLabelWidget,
       useShadowBox: true,
     );
   }

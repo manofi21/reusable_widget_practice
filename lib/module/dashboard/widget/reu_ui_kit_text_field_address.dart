@@ -3,7 +3,9 @@ import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_fi
 
 class ReuUiKitTextFieldAddress extends StatelessWidget {
   final TextEditingController controller;
-  const ReuUiKitTextFieldAddress({super.key, required this.controller});
+  final Widget? sidesLabelWidget;
+  const ReuUiKitTextFieldAddress(
+      {super.key, required this.controller, this.sidesLabelWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +13,7 @@ class ReuUiKitTextFieldAddress extends StatelessWidget {
       labelText: "Address",
       controller: controller,
       useShadowBox: true,
+      sidesLabelWidget: sidesLabelWidget,
     );
   }
 }

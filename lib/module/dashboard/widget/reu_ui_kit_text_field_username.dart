@@ -10,10 +10,11 @@ enum FieldNameType {
 class ReuUiKitTextFieldName extends StatelessWidget {
   final TextEditingController controller;
   final FieldNameType fieldNameType;
+  final Widget? sidesLabelWidget;
   const ReuUiKitTextFieldName({
     super.key,
     required this.controller,
-    required this.fieldNameType,
+    required this.fieldNameType, this.sidesLabelWidget,
   });
 
   @override
@@ -30,6 +31,7 @@ class ReuUiKitTextFieldName extends StatelessWidget {
     );
     return InputDecorationBoldShabow(
       labelText: isFirstName ? "First Name" : "Last Name",
+      sidesLabelWidget: sidesLabelWidget,
       child: fieldName,
     );
   }
