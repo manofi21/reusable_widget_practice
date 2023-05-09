@@ -19,6 +19,7 @@ import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_fi
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_radiobutton.dart';
 
 import '../../../enum/outlined_button_enum.dart';
+import '../../../reusable_ui_kit/main_resuable_ui_kit_button/reu_ui_kit_button_info.dart';
 import '../widget/image_picker_field_widget.dart';
 
 class DashboardView extends StatefulWidget {
@@ -45,25 +46,52 @@ class DashboardView extends StatefulWidget {
                     ReuUiKitTextFieldName(
                       controller: controller.fistNameController,
                       fieldNameType: FieldNameType.firstName,
+                      sidesLabelWidget: ReuUiKitButtonInfo(
+                        textLabel: "Show Info",
+                        onPressed: () {
+                          print("object");
+                        },
+                        // onPressed: controller.onShowInfoFirstCharacterDialog,
+                      ),
                     ),
                     const SizedBox(width: 10),
                     ReuUiKitTextFieldName(
                       controller: controller.lastNameController,
                       fieldNameType: FieldNameType.lastName,
+                      sidesLabelWidget: ReuUiKitButtonInfo(
+                        textLabel: "Show Info",
+                        onPressed: controller.onShowInfoLastCharacterDialog,
+                      ),
                     )
                   ],
                 ),
                 ReuUiKitTextFieldPhoneNumber(
                   controller: controller.phoneNumberController,
-                ),
-                ReuUiKitTextFieldPassword(
-                  controller: controller.passwordController,
+                  sidesLabelWidget: ReuUiKitButtonInfo(
+                    textLabel: "Show Info",
+                    onPressed: controller.onShowInfoNoTelpDialog,
+                  ),
                 ),
                 ReuUiKitTextFieldAddress(
                   controller: controller.addressController,
+                  sidesLabelWidget: ReuUiKitButtonInfo(
+                    textLabel: "Show Info",
+                    onPressed: controller.onShowInfoEmailDialog,
+                  ),
+                ),
+                ReuUiKitTextFieldPassword(
+                  controller: controller.passwordController,
+                  sidesLabelWidget: ReuUiKitButtonInfo(
+                    textLabel: "Show Info",
+                    onPressed: controller.onShowInfoPassEmailDialog,
+                  ),
                 ),
                 ReuUiKitFieldDropdown<String>(
                   label: "Choose Preferance",
+                  sidesLabelWidget: ReuUiKitButtonInfo(
+                    textLabel: "Show Info",
+                    onPressed: controller.onShowinfoDropdownDialog,
+                  ),
                   emptyValue: ReuDropdownModel<String>(value: '-'),
                   items: <ReuDropdownModel<String>>[
                     ReuDropdownModel<String>(value: "Gamer"),
@@ -79,7 +107,7 @@ class DashboardView extends StatefulWidget {
                   useShadowBox: true,
                 ),
                 ReuUiKitFieldCheckbox<String>(
-                  label: "Choose Hair Type",
+                  label: "Choose Type",
                   items: [
                     ReuCheckboxModel<String>(value: 'Long Hair'),
                     ReuCheckboxModel<String>(value: 'Short Hair'),
@@ -87,6 +115,10 @@ class DashboardView extends StatefulWidget {
                   ],
                   initialOther: ReuCheckboxModel<String>(value: 'Other'),
                   onChanged: (onListChange) {},
+                  sidesLabelWidget: ReuUiKitButtonInfo(
+                    textLabel: "Show Info",
+                    onPressed: controller.onShowInfoChecboxButtonDialog,
+                  ),
                   useShadowBox: true,
                 ),
                 ReuUiKitFieldRadiobutton<String>(
@@ -100,6 +132,12 @@ class DashboardView extends StatefulWidget {
                   initialOther: ReuRadioButtonModel<String>(value: 'Other'),
                   onChanged: (selectedValue) {},
                   useShadowBox: true,
+                  sidesLabelWidget: ReuUiKitButtonInfo(
+                    textLabel: "Show Info",
+                    onPressed: () {
+                      print("COba print");
+                    }// controller.onShowInfoRadioButtonDialog,
+                  ),
                 ),
                 ImagePickerFieldWidget(
                   imagePickerTextController:
@@ -108,6 +146,7 @@ class DashboardView extends StatefulWidget {
                   listMultipleImage: controller.listImg,
                   labelText: "Add Your Referance/Image Here",
                   onPressed: controller.onPressedImagePicker,
+                  onPressedInfo: controller.onShowInfoImagePickerDialog,
                   footWidget: [
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
