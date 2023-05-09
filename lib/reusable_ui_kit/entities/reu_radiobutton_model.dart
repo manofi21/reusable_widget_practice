@@ -30,6 +30,14 @@ class ReuRadioButtonModel<T> {
     );
   }
 
+  ReuRadioButtonModel<T> onUserInsesrtNewValue({required String userInput}) {
+    return ReuRadioButtonModel<T>(
+      value: value,
+      isRadioChoose: true,
+      label: userInput,
+    );
+  }
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
