@@ -12,6 +12,7 @@ class ReuUiKitFieldPassword extends StatelessWidget {
   final Widget? suffixWidget;
   final void Function()? defaultOnChange;
   final bool useShadowBox;
+  final Widget? sidesLabelWidget;
   const ReuUiKitFieldPassword({
     super.key,
     required this.controller,
@@ -22,12 +23,14 @@ class ReuUiKitFieldPassword extends StatelessWidget {
     this.suffixWidget,
     this.defaultOnChange,
     this.useShadowBox = false,
+    this.sidesLabelWidget,
   });
 
   @override
   Widget build(BuildContext context) {
     if (useShadowBox) {
       return InputDecorationBoldShabow(
+        sidesLabelWidget: sidesLabelWidget,
         labelText: labelPasswordField,
         child: ReuUiKitTextField(
           controller: controller,

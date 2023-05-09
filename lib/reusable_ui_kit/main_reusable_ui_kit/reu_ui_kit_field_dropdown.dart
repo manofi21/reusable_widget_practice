@@ -15,6 +15,8 @@ class ReuUiKitFieldDropdown<T> extends StatefulWidget {
   final Function(ReuDropdownModel<T>) onChanged;
   final bool useShadowBox;
 
+  final Widget? sidesLabelWidget;
+
   const ReuUiKitFieldDropdown({
     Key? key,
     required this.label,
@@ -25,6 +27,7 @@ class ReuUiKitFieldDropdown<T> extends StatefulWidget {
     this.validator,
     this.hint,
     this.useShadowBox = false,
+    this.sidesLabelWidget,
   }) : super(key: key);
 
   @override
@@ -132,6 +135,7 @@ class _ReuUiKitFieldDropdownState<T> extends State<ReuUiKitFieldDropdown<T>> {
         if (widget.useShadowBox) {
           return InputDecorationBoldShabow(
             labelText: widget.label,
+            sidesLabelWidget: widget.sidesLabelWidget,
             child: dropdownWidget,
           );
         }

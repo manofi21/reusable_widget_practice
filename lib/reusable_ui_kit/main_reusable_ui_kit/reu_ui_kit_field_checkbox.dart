@@ -16,8 +16,10 @@ class ReuUiKitFieldCheckbox<T> extends StatefulWidget {
   final ScrollPhysics? physics;
   final bool useShadowBox;
 
-  /// Param for intial other. Add this for allow user can input their options 
+  /// Param for intial other. Add this for allow user can input their options
   final ReuCheckboxModel<T>? initialOther;
+
+  final Widget? sidesLabelWidget;
 
   const ReuUiKitFieldCheckbox({
     Key? key,
@@ -30,6 +32,7 @@ class ReuUiKitFieldCheckbox<T> extends StatefulWidget {
     this.physics,
     this.useShadowBox = false,
     this.initialOther,
+    this.sidesLabelWidget,
   }) : super(key: key);
 
   @override
@@ -118,6 +121,7 @@ class _ReuUiKitFieldCheckboxState<T> extends State<ReuUiKitFieldCheckbox<T>> {
         if (widget.useShadowBox) {
           return InputDecorationBoldShabow(
             labelText: widget.label,
+            sidesLabelWidget: widget.sidesLabelWidget,
             child: listOfCheckbox,
           );
         }

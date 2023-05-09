@@ -17,8 +17,10 @@ class ReuUiKitFieldRadiobutton<T> extends StatefulWidget {
   final ScrollPhysics? physics;
   final bool useShadowBox;
 
-  /// Param for intial other. Add this for allow user can input their options 
+  /// Param for intial other. Add this for allow user can input their options
   final ReuRadioButtonModel<T>? initialOther;
+
+  final Widget? sidesLabelWidget;
 
   const ReuUiKitFieldRadiobutton({
     super.key,
@@ -30,6 +32,7 @@ class ReuUiKitFieldRadiobutton<T> extends StatefulWidget {
     this.initialOther,
     this.physics,
     this.useShadowBox = false,
+    this.sidesLabelWidget,
   });
 
   @override
@@ -152,6 +155,7 @@ class _ReuUiKitFieldRadiobuttonState<T>
         if (widget.useShadowBox) {
           return InputDecorationBoldShabow(
             labelText: widget.label,
+            sidesLabelWidget: widget.sidesLabelWidget,
             child: listOfRadioButton,
           );
         }

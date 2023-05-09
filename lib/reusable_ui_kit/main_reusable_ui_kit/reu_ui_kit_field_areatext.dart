@@ -10,6 +10,8 @@ class ReuUiKitTextFieldAreaText extends StatelessWidget {
   final bool useShadowBox;
   final InputBorder? border;
 
+  final Widget? sidesLabelWidget;
+
   const ReuUiKitTextFieldAreaText({
     super.key,
     required this.controller,
@@ -17,6 +19,7 @@ class ReuUiKitTextFieldAreaText extends StatelessWidget {
     this.maxLines = 3,
     this.useShadowBox = false,
     this.border,
+    this.sidesLabelWidget,
   });
 
   @override
@@ -26,6 +29,7 @@ class ReuUiKitTextFieldAreaText extends StatelessWidget {
     if (useShadowBox) {
       return InputDecorationBoldShabow(
         labelText: labelText,
+        sidesLabelWidget: sidesLabelWidget,
         child: ReuUiKitTextField(
           controller: controller,
           maxLines: maxLines,

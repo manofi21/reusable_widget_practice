@@ -9,6 +9,7 @@ class ReuUiKitTextFieldNumeric extends StatelessWidget {
   final Widget? prefixWidget;
   final String? Function(String?)? validator;
   final bool useShadowBox;
+  final Widget? sidesLabelWidget;
   const ReuUiKitTextFieldNumeric({
     super.key,
     required this.controller,
@@ -16,6 +17,7 @@ class ReuUiKitTextFieldNumeric extends StatelessWidget {
     this.prefixWidget,
     this.validator,
     this.useShadowBox = false,
+    this.sidesLabelWidget,
   });
 
   @override
@@ -47,6 +49,7 @@ class ReuUiKitTextFieldNumeric extends StatelessWidget {
     if (useShadowBox) {
       return InputDecorationBoldShabow(
         labelText: labelText,
+        sidesLabelWidget: sidesLabelWidget,
         child: fieldNumeric,
       );
     }
