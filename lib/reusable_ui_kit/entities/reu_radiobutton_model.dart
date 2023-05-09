@@ -30,7 +30,7 @@ class ReuRadioButtonModel<T> {
     );
   }
 
-  ReuRadioButtonModel<T> onUserInsesrtNewValue({required String userInput}) {
+  ReuRadioButtonModel<T> onUserInsertNewValue({required String userInput}) {
     return ReuRadioButtonModel<T>(
       value: value,
       isRadioChoose: true,

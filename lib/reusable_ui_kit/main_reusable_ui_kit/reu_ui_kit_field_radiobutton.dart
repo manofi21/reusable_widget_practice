@@ -87,7 +87,7 @@ class _ReuUiKitFieldRadiobuttonState<T>
                   },
                   onSubmitted: (value) {
                     final newValueFromUser = widget.initialOther!
-                        .onUserInsesrtNewValue(userInput: value);
+                        .onUserInsertNewValue(userInput: value);
                     setState(() {
                       textEditingFieldController.clear();
                       items.add(newValueFromUser);
