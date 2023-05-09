@@ -3,20 +3,30 @@ import 'package:flutter/material.dart';
 class InputDecorationBoldShabow extends StatelessWidget {
   final Widget child;
   final String labelText;
-final  Widget? counter;
-final bool defaultCounter;
+  final Widget? counter;
+  final bool defaultCounter;
+  final Widget? sidesLabelWidget;
   const InputDecorationBoldShabow(
-      {super.key, required this.child, required this.labelText, this.counter, this.defaultCounter = false});
+      {super.key,
+      required this.child,
+      required this.labelText,
+      this.counter,
+      this.defaultCounter = false,
+      this.sidesLabelWidget});
 
   @override
   Widget build(BuildContext context) {
     return InputDecorator(
       decoration: InputDecoration(
-        labelText: labelText,
+        label: Row(
+          children: [
+            Text(labelText),
+            const SizedBox(width: 10),
+            sidesLabelWidget ?? Container(),
+          ],
+        ),
         border: InputBorder.none,
-        counter: counter == null && !defaultCounter
-            ? Container()
-            : counter,
+        counter: counter == null && !defaultCounter ? Container() : counter,
       ),
       child: Container(
         padding: const EdgeInsets.all(5),
