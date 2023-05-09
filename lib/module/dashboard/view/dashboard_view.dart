@@ -85,6 +85,7 @@ class DashboardView extends StatefulWidget {
                     ReuChecboxModel<String>(value: 'Short Hair'),
                     ReuChecboxModel<String>(value: 'Twin-tail Hair'),
                   ],
+                  initialOther: ReuChecboxModel<String>(value: 'Other'),
                   onChanged: (onListChange) {},
                   useShadowBox: true,
                 ),
