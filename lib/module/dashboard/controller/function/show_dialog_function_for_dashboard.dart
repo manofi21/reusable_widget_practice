@@ -88,3 +88,102 @@ Future<void> disabledClearButtonDialog(BuildContext context) async {
     outlinedType: OutlinedButtonEnum.disable,
   );
 }
+
+Future<void> infoImagePickerDialog(BuildContext context) async {
+  return reuUiKitDialog(
+    context: context,
+    titleDialog: "Untuk memilih Image yang sesuai\ndengan role. Bisa Image tentang armor,\nsenjata, atau referensi lainnya",
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    outlinedType: OutlinedButtonEnum.info,
+  );
+}
+
+Future<void> infoFormRadioButtonDialog(BuildContext context) async {
+  return reuUiKitDialog(
+    context: context,
+    titleDialog: "Untuk memilih Roles yang user inginkan. User\n juga bisa mengimput rolenya sendiri dengan mensubmit\ntext box yang mereka sudah ketik",
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    outlinedType: OutlinedButtonEnum.info,
+  );
+}
+
+Future<void> infoFormCheckboxButtonDialog(BuildContext context) async {
+  return reuUiKitDialog(
+    context: context,
+    titleDialog: "Untuk memilih Kosmetik yang user inginkan seperti\ncontohnya jenis rambut.\nUser juga bisa mengimput rolenya sendiri dengan mensubmit\ntext box yang mereka sudah ketik",
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    outlinedType: OutlinedButtonEnum.info,
+  );
+}
+
+Future<void> infoDropdownDialog(BuildContext context) async {
+  return reuUiKitDialog(
+    context: context,
+    titleDialog: "Untuk hobi/preferesi yang inginkan user",
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    outlinedType: OutlinedButtonEnum.info,
+  );
+}
+
+Future<void> infoFirstCharacterNameDialog(BuildContext context) async {
+  return reuUiKitDialog(
+    context: context,
+    titleDialog: "Field untuk anda mengimput nama pertama karaktermu",
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    outlinedType: OutlinedButtonEnum.info,
+  );
+}
+
+Future<void> infoLastCharacterNameDialog(BuildContext context) async {
+  return reuUiKitDialog(
+    context: context,
+    titleDialog: "Field untuk anda mengimput nama terakhir karaktermu",
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    outlinedType: OutlinedButtonEnum.info,
+  );
+}
+
+Future<void> infoPhoneNumberDialog(BuildContext context) async {
+  return reuUiKitDialog(
+    context: context,
+    titleDialog: "Field untuk anda menginput nomor telfon mu.\nUntuk berjaga - jaga anda perlu dihubungi",
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    outlinedType: OutlinedButtonEnum.info,
+  );
+}
+
+Future<void> infoEmailDialog(BuildContext context) async {
+  return reuUiKitDialog(
+    context: context,
+    titleDialog: "Field untuk anda menginput E-mail.",
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    outlinedType: OutlinedButtonEnum.info,
+  );
+}
+
+Future<void> infoPassEmailDialog(BuildContext context) async {
+  return reuUiKitDialog(
+    context: context,
+    titleDialog: "Field untuk anda menginput Password E-mail.",
+    onPressed: () {
+      Navigator.pop(context);
+    },
+    outlinedType: OutlinedButtonEnum.info,
+  );
+}
