@@ -96,6 +96,7 @@ class DashboardView extends StatefulWidget {
                     ReuRadioButtonModel<String>(value: 'Swordman'),
                     ReuRadioButtonModel<String>(value: 'Tanker'),
                   ],
+                  initialOther: ReuRadioButtonModel<String>(value: 'Other'),
                   onChanged: (selectedValue) {},
                   useShadowBox: true,
                 ),
