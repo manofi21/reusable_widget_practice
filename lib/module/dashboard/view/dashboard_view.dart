@@ -48,10 +48,7 @@ class DashboardView extends StatefulWidget {
                       fieldNameType: FieldNameType.firstName,
                       sidesLabelWidget: ReuUiKitButtonInfo(
                         textLabel: "Show Info",
-                        onPressed: () {
-                          print("object");
-                        },
-                        // onPressed: controller.onShowInfoFirstCharacterDialog,
+                        onPressed: controller.onShowInfoFirstCharacterDialog,
                       ),
                     ),
                     const SizedBox(width: 10),
@@ -134,9 +131,7 @@ class DashboardView extends StatefulWidget {
                   useShadowBox: true,
                   sidesLabelWidget: ReuUiKitButtonInfo(
                     textLabel: "Show Info",
-                    onPressed: () {
-                      print("COba print");
-                    }// controller.onShowInfoRadioButtonDialog,
+                    onPressed: controller.onShowInfoRadioButtonDialog,
                   ),
                 ),
                 ImagePickerFieldWidget(
