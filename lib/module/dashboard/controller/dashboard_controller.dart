@@ -20,6 +20,7 @@ class DashboardController extends State<DashboardView>
   }
 
   bool isLoading = false;
+  bool isShowExistingField = false;
 
   final formKey = GlobalKey<FormState>();
 
@@ -49,6 +50,12 @@ class DashboardController extends State<DashboardView>
     listImg.clear();
     imagePickerTextController.clear();
     setState(() {});
+  }
+
+  void onChangeExistingField(bool? isShow) {
+    setState(() {
+      isShowExistingField = isShow ?? false;
+    });
   }
 
   void onRemoveDataFunction() {
@@ -116,6 +123,13 @@ class DashboardController extends State<DashboardView>
     infoPassEmailDialog(context);
   }
 
+  void onInfoExistingCharacterFieldDialog() {
+    infoExistingCharacterFieldDialog(context);
+  }
+
+  void onInfoCheckboxExisitngCharacter() {
+    onInfoCheckboxExisitngCharacterDialog(context);
+  }
 
   @override
   void initState() {
