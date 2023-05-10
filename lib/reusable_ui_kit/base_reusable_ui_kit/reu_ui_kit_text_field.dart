@@ -26,6 +26,7 @@ class ReuUiKitTextField extends StatefulWidget {
   final bool useBorder;
   final EdgeInsetsGeometry? contentPadding;
   final double? cursorHeight;
+  final FocusNode? focusNode;
 
   const ReuUiKitTextField({
     Key? key,
@@ -53,7 +54,8 @@ class ReuUiKitTextField extends StatefulWidget {
     this.textInputType = TextInputType.text,
     this.useBorder = true,
     this.contentPadding = EdgeInsets.zero,
-    this.cursorHeight,
+    this.cursorHeight, 
+    this.focusNode,
   }) : super(key: key);
 
   @override
@@ -74,7 +76,7 @@ class _ReuUiKitTextFieldState extends State<ReuUiKitTextField> {
     return TextFormField(
       enabled: widget.enabled,
       controller: widget.controller,
-      focusNode: focusNode,
+      focusNode: widget.focusNode ?? focusNode,
       validator: widget.validator,
       maxLength: widget.maxLength,
       obscureText: widget.obscure,
