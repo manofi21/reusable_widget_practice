@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:form_tutorial/core.dart';
 import 'package:form_tutorial/module/dashboard/widget/row_space_evenly_widget.dart';
 import 'package:form_tutorial/module/dashboard/widget/two_button_inside_a_widget.dart';
-import 'package:form_tutorial/reusable_ui_kit/base_reusable_ui_kit/reu_ui_kit_dialog.dart';
 import 'package:form_tutorial/reusable_ui_kit/entities/reu_checkbox_model.dart';
 import 'package:form_tutorial/reusable_ui_kit/entities/reu_dropdown_model.dart';
 import 'package:form_tutorial/reusable_ui_kit/entities/reu_radiobutton_model.dart';
@@ -18,8 +17,9 @@ import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_fi
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_dropdown.dart';
 import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_radiobutton.dart';
 
-import '../../../enum/outlined_button_enum.dart';
+import '../../../reusable_ui_kit/entities/reu_autopopulate_model.dart';
 import '../../../reusable_ui_kit/main_resuable_ui_kit_button/reu_ui_kit_button_info.dart';
+import '../../../reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_autocomplete.dart';
 import '../widget/image_picker_field_widget.dart';
 
 class DashboardView extends StatefulWidget {
@@ -61,6 +61,20 @@ class DashboardView extends StatefulWidget {
                       ),
                     )
                   ],
+                ),
+                ReuUiKitFieldAutoComplete<String>(
+                  label: "Your Existing Character",
+                  items: [
+                    ReuAutopopulateModel(value: "Ray The Executor"),
+                    ReuAutopopulateModel(value: "Blue Hunter"),
+                    ReuAutopopulateModel(value: "The Kid Driver"),
+                  ],
+                  onSelected: (selectedValue) {},
+                  useShadowBox: true,
+                  sidesLabelWidget: ReuUiKitButtonInfo(
+                    textLabel: "Show Info",
+                    onPressed: controller.onShowInfoEmailDialog,
+                  ),
                 ),
                 ReuUiKitTextFieldPhoneNumber(
                   controller: controller.phoneNumberController,
