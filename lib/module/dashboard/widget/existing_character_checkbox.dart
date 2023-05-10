@@ -21,6 +21,7 @@ class ExistingCharacterCheckbox extends StatelessWidget {
           onChanged: onChanged,
         ),
         const Text("Existing Character"),
+        const SizedBox(width: 10),
         sidesLabelWidget ?? Container(),
       ],
     );
