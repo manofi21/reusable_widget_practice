@@ -20,6 +20,7 @@ import 'package:form_tutorial/reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_fi
 import '../../../reusable_ui_kit/entities/reu_autopopulate_model.dart';
 import '../../../reusable_ui_kit/main_resuable_ui_kit_button/reu_ui_kit_button_info.dart';
 import '../../../reusable_ui_kit/main_reusable_ui_kit/reu_ui_kit_field_autocomplete.dart';
+import '../widget/existing_character_checkbox.dart';
 import '../widget/image_picker_field_widget.dart';
 
 class DashboardView extends StatefulWidget {
@@ -41,39 +42,50 @@ class DashboardView extends StatefulWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RowSpaceEvenlyWidget(
-                  children: [
-                    ReuUiKitTextFieldName(
-                      controller: controller.fistNameController,
-                      fieldNameType: FieldNameType.firstName,
-                      sidesLabelWidget: ReuUiKitButtonInfo(
-                        textLabel: "Show Info",
-                        onPressed: controller.onShowInfoFirstCharacterDialog,
+                TwoButtonInsideAWidget(
+                  isSaved: controller.isShowExistingField,
+                  firstWidget: RowSpaceEvenlyWidget(
+                    children: [
+                      ReuUiKitTextFieldName(
+                        controller: controller.fistNameController,
+                        fieldNameType: FieldNameType.firstName,
+                        sidesLabelWidget: ReuUiKitButtonInfo(
+                          textLabel: "Show Info",
+                          onPressed: controller.onShowInfoFirstCharacterDialog,
+                        ),
                       ),
+                      const SizedBox(width: 10),
+                      ReuUiKitTextFieldName(
+                        controller: controller.lastNameController,
+                        fieldNameType: FieldNameType.lastName,
+                        sidesLabelWidget: ReuUiKitButtonInfo(
+                          textLabel: "Show Info",
+                          onPressed: controller.onShowInfoLastCharacterDialog,
+                        ),
+                      )
+                    ],
+                  ),
+                  secondWidget: ReuUiKitFieldAutoComplete<String>(
+                    label: "Your Existing Character",
+                    items: [
+                      ReuAutopopulateModel(value: "Ray The Executor"),
+                      ReuAutopopulateModel(value: "Blue Hunter"),
+                      ReuAutopopulateModel(value: "The Kid Driver"),
+                    ],
+                    onSelected: (selectedValue) {},
+                    useShadowBox: true,
+                    sidesLabelWidget: ReuUiKitButtonInfo(
+                      textLabel: "Show Info",
+                      onPressed: controller.onInfoExistingCharacterFieldDialog,
                     ),
-                    const SizedBox(width: 10),
-                    ReuUiKitTextFieldName(
-                      controller: controller.lastNameController,
-                      fieldNameType: FieldNameType.lastName,
-                      sidesLabelWidget: ReuUiKitButtonInfo(
-                        textLabel: "Show Info",
-                        onPressed: controller.onShowInfoLastCharacterDialog,
-                      ),
-                    )
-                  ],
+                  ),
                 ),
-                ReuUiKitFieldAutoComplete<String>(
-                  label: "Your Existing Character",
-                  items: [
-                    ReuAutopopulateModel(value: "Ray The Executor"),
-                    ReuAutopopulateModel(value: "Blue Hunter"),
-                    ReuAutopopulateModel(value: "The Kid Driver"),
-                  ],
-                  onSelected: (selectedValue) {},
-                  useShadowBox: true,
+                ExistingCharacterCheckbox(
+                  value: controller.isShowExistingField,
+                  onChanged: controller.onChangeExistingField,
                   sidesLabelWidget: ReuUiKitButtonInfo(
                     textLabel: "Show Info",
-                    onPressed: controller.onShowInfoEmailDialog,
+                    onPressed: controller.onInfoCheckboxExisitngCharacter,
                   ),
                 ),
                 ReuUiKitTextFieldPhoneNumber(
