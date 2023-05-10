@@ -52,6 +52,8 @@ class _ReuUiKitFieldAutoCompleteState<T>
           focusNode: focusNode,
           onSubmitted: (text) => onFieldSubmitted(),
           useSuffix: true,
+          contentPadding: const EdgeInsets.only(top: 15),
+          cursorHeight: 25,
           suffixIcon: Icons.search,
         );
       },
@@ -63,12 +65,15 @@ class _ReuUiKitFieldAutoCompleteState<T>
         }
 
         final result = items.where(
-          (e) => e.labelValue.contains(
+          (e) => e.labelValue.toLowerCase().contains(
             textEditingValue.text.toLowerCase(),
           ),
         );
 
         return result;
+      },
+      displayStringForOption: (option) {
+        return option.labelValue;
       },
     );
 
