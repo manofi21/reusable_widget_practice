@@ -46,6 +46,7 @@ class ReuUiKitFieldCheckbox<T> extends StatefulWidget {
 class _ReuUiKitFieldCheckboxState<T> extends State<ReuUiKitFieldCheckbox<T>> {
   List<ReuCheckboxModel<T>> items = [];
   bool isUserAllowCustomInput = false;
+  bool isCheckAllCheced = false;
 
   @override
   void initState() {
@@ -130,8 +131,14 @@ class _ReuUiKitFieldCheckboxState<T> extends State<ReuUiKitFieldCheckbox<T>> {
                     children: [
                       CheckboxListTile(
                         title: const Text("Check All"),
-                        value: false,
-                        onChanged: (val) {},
+                        value: isCheckAllCheced,
+                        onChanged: (val) {
+                          for (var i = 0; i < items.length;i++) {
+                            items[i] = items[i].onChangeIsBoxChecked(val ?? false);
+                          }
+                          isCheckAllCheced = val ?? false;
+                          field.didChange(true);
+                        },
                       ),
                       listOfCheckbox,
                     ],
