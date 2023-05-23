@@ -10,6 +10,7 @@ class ReuUiKitTextFieldNumeric extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool useShadowBox;
   final Widget? sidesLabelWidget;
+  final EdgeInsetsGeometry? contentPadding;
   const ReuUiKitTextFieldNumeric({
     super.key,
     required this.controller,
@@ -17,7 +18,8 @@ class ReuUiKitTextFieldNumeric extends StatelessWidget {
     this.prefixWidget,
     this.validator,
     this.useShadowBox = false,
-    this.sidesLabelWidget,
+    this.sidesLabelWidget, 
+    this.contentPadding,
   });
 
   @override
@@ -28,6 +30,7 @@ class ReuUiKitTextFieldNumeric extends StatelessWidget {
       usePrefix: prefixWidget != null,
       prefixWidget: prefixWidget,
       textInputType: TextInputType.phone,
+      contentPadding: contentPadding,
       validator: (value) {
         if (value?.isEmpty ?? true) {
           return "Phone Number Must be Filled";

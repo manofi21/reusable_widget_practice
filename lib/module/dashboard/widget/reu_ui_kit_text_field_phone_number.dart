@@ -24,6 +24,7 @@ class ReuUiKitTextFieldPhoneNumber extends StatelessWidget {
       prefixWidget: prefixRegionINDOCall,
       sidesLabelWidget: sidesLabelWidget,
       useShadowBox: true,
+      contentPadding: const EdgeInsets.only(top: 16.5),
     );
   }
 }
