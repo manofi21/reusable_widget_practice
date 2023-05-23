@@ -21,6 +21,8 @@ class ReuUiKitFieldCheckbox<T> extends StatefulWidget {
 
   final Widget? sidesLabelWidget;
 
+  final bool isUseCheckAll;
+
   const ReuUiKitFieldCheckbox({
     Key? key,
     required this.label,
@@ -33,6 +35,7 @@ class ReuUiKitFieldCheckbox<T> extends StatefulWidget {
     this.useShadowBox = false,
     this.initialOther,
     this.sidesLabelWidget,
+    this.isUseCheckAll = true,
   }) : super(key: key);
 
   @override
@@ -122,7 +125,18 @@ class _ReuUiKitFieldCheckboxState<T> extends State<ReuUiKitFieldCheckbox<T>> {
           return InputDecorationBoldShabow(
             labelText: widget.label,
             sidesLabelWidget: widget.sidesLabelWidget,
-            child: listOfCheckbox,
+            child: widget.isUseCheckAll
+                ? Column(
+                    children: [
+                      CheckboxListTile(
+                        title: const Text("Check All"),
+                        value: false,
+                        onChanged: (val) {},
+                      ),
+                      listOfCheckbox,
+                    ],
+                  )
+                : listOfCheckbox,
           );
         }
 
@@ -133,7 +147,29 @@ class _ReuUiKitFieldCheckboxState<T> extends State<ReuUiKitFieldCheckbox<T>> {
             border: InputBorder.none,
             helperText: widget.hint,
           ),
-          child: listOfCheckbox,
+          child: widget.isUseCheckAll
+              ? Column(
+                  children: [
+                    CheckboxListTile(
+                      title: const Text("Check All"),
+                      value: false,
+                      onChanged: (val) {
+                        // if (val != null) {
+                        //   setState(() {
+                        //     items[index] =
+                        //         items[index].onChangeIsBoxChecked(val);
+                        //     textEditingFieldController.clear();
+                        //     otherFieldFocuseNode.unfocus();
+                        //     field.didChange(true);
+                        //   });
+                        //   widget.onChanged(items);
+                        // }
+                      },
+                    ),
+                    listOfCheckbox,
+                  ],
+                )
+              : listOfCheckbox,
         );
       },
     );
