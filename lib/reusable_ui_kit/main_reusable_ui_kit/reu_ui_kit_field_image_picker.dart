@@ -111,6 +111,7 @@ class ReuUiKitFieldImagePicker extends StatelessWidget {
                 ReuUiKitButtonInfo(
                   textLabel: "Show Info",
                   onPressed: onPressedInfo,
+                  fontSize: 10,
                   sizeButton: const Size(70, 15),
                 ) : Container(),
                 FormField(
